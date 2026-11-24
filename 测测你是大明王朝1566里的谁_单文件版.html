@@ -1,0 +1,3841 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>测测你是《大明王朝1566》里的谁 · 三十问照见本心</title>
+  <meta name="description" content="30道现代生活与职场处境选择题，零门槛测出你在《大明王朝1566》中的灵魂对应人物与六维心性图谱。" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%239E2A2B'/%3E%3Crect x='6' y='6' width='52' height='52' fill='none' stroke='%23FAF6EE' stroke-width='2' stroke-opacity='0.6'/%3E%3Ctext x='32' y='43' font-size='32' text-anchor='middle' fill='%23FAF6EE' font-family='serif' font-weight='bold'%3E明%3C/text%3E%3C/svg%3E" />
+  <style>
+/* ==========================================================================
+   《测测你是〈大明王朝1566〉里的谁》 — 明代奏折·古籍刻本视觉系统
+   配色：宣纸白 · 玄墨黑 · 朱砂红 · 群青蓝 · 泥金暗纹
+   ========================================================================== */
+
+:root {
+  --bg-outer: #EAE1D0;
+  --bg-paper: #F5EFE4;
+  --bg-card: #FBF8F2;
+  --bg-elevated: #EFE7D7;
+  --ink-900: #1A1815;
+  --ink-700: #3E3932;
+  --ink-500: #6E665B;
+  --ink-400: #93897C;
+  --ink-200: #D7CEBE;
+  --ink-100: #E6DFD2;
+
+  --vermilion: #9E2A2B;
+  --vermilion-hover: #822021;
+  --vermilion-soft: rgba(158, 42, 43, 0.08);
+  --vermilion-border: rgba(158, 42, 43, 0.35);
+
+  --cobalt: #1F445A;
+  --cobalt-soft: rgba(31, 68, 90, 0.08);
+
+  --gold: #A68246;
+  --gold-light: #C8A971;
+  --gold-soft: rgba(166, 130, 70, 0.16);
+
+  --font-serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "PMingLiU", "SimSun", Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+
+  --shadow-scroll: 0 14px 40px rgba(26, 24, 21, 0.09), 0 2px 8px rgba(26, 24, 21, 0.05);
+  --shadow-card: 0 6px 20px rgba(26, 24, 21, 0.06);
+  --ease-out-quart: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-outer);
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(251, 248, 242, 0.75) 0%, transparent 70%),
+    radial-gradient(ellipse at 85% 90%, rgba(158, 42, 43, 0.04) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 80%, rgba(31, 68, 90, 0.05) 0%, transparent 55%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2393897c' stroke-width='0.5' stroke-opacity='0.14'%3E%3Cpath d='M30 0v60M0 30h60'/%3E%3Ccircle cx='30' cy='30' r='8'/%3E%3C/g%3E%3C/svg%3E");
+  color: var(--ink-900);
+  font-family: var(--font-sans);
+  line-height: 1.65;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 48px;
+  overflow-x: hidden;
+}
+
+/* 顶部古籍卷首眉标 */
+.top-ambient-bar {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px 14px;
+  color: var(--ink-500);
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  user-select: none;
+}
+
+.top-ambient-bar .dynasty-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-ambient-bar .dot-ornament {
+  width: 6px;
+  height: 6px;
+  background: var(--vermilion);
+  transform: rotate(45deg);
+  display: inline-block;
+}
+
+/* 主舞台容器 */
+.app-stage {
+  width: 100%;
+  max-width: 680px;
+  position: relative;
+}
+
+/* 视图切换通用动画 */
+.view-section {
+  display: none;
+  animation: fadeRise 0.48s var(--ease-out-quart) forwards;
+}
+
+.view-section.active {
+  display: block;
+}
+
+@keyframes fadeRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 明刻本乌丝栏双层外框容器 */
+.ming-folio {
+  background: var(--bg-card);
+  border: 2px solid var(--ink-900);
+  padding: 6px;
+  box-shadow: var(--shadow-scroll);
+  position: relative;
+}
+
+.ming-folio-inner {
+  border: 1px solid var(--ink-400);
+  background:
+    linear-gradient(180deg, rgba(245, 239, 228, 0.45) 0%, rgba(251, 248, 242, 0.92) 22%, rgba(251, 248, 242, 0.96) 100%);
+  padding: 36px 32px;
+  position: relative;
+}
+
+/* 四角回纹装饰角花 */
+.corner-ornament {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  border-color: var(--gold);
+  border-style: solid;
+  opacity: 0.85;
+}
+.corner-ornament.tl { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
+.corner-ornament.tr { top: 8px; right: 8px; border-width: 2px 2px 0 0; }
+.corner-ornament.bl { bottom: 8px; left: 8px; border-width: 0 0 2px 2px; }
+.corner-ornament.br { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
+
+/* 篆刻朱砂方印 */
+.seal-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  background: var(--vermilion);
+  color: #FAF5EC;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+  border-radius: 3px;
+  border: 2px solid var(--vermilion);
+  box-shadow: inset 0 0 0 2px rgba(250, 245, 236, 0.38), 0 3px 8px rgba(158, 42, 43, 0.22);
+  text-align: center;
+  padding: 3px;
+  transform: rotate(-2.5deg);
+  user-select: none;
+}
+
+.seal-stamp.outline {
+  background: transparent;
+  color: var(--vermilion);
+  border: 2px solid var(--vermilion);
+  box-shadow: inset 0 0 0 1px rgba(158, 42, 43, 0.28);
+}
+
+/* ==========================================================================
+   首页 View (Home)
+   ========================================================================== */
+.hero-header {
+  text-align: center;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--ink-200);
+  position: relative;
+}
+
+.hero-header::after {
+  content: "◆";
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  padding: 0 10px;
+  color: var(--gold);
+  font-size: 0.72rem;
+}
+
+.folio-kicker {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  color: var(--vermilion);
+  letter-spacing: 0.24em;
+  border-top: 1px solid var(--vermilion-border);
+  border-bottom: 1px solid var(--vermilion-border);
+  padding: 4px 14px;
+  margin-bottom: 20px;
+  background: var(--vermilion-soft);
+}
+
+.hero-title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.hero-pretitle {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--ink-700);
+  letter-spacing: 0.26em;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 5.2vw, 2.55rem);
+  font-weight: 700;
+  color: var(--ink-900);
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+}
+
+.hero-title .highlight-drama {
+  color: var(--vermilion);
+  position: relative;
+  display: inline-block;
+}
+
+.hero-seal-row {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-quote {
+  margin: 26px auto 22px;
+  max-width: 520px;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--ink-700);
+  line-height: 1.9;
+  letter-spacing: 0.05em;
+}
+
+/* 规格徽章栏 */
+.spec-pills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 22px 0 26px;
+}
+
+.spec-pill {
+  background: var(--bg-paper);
+  border: 1px solid var(--ink-200);
+  padding: 12px 10px;
+  text-align: center;
+}
+
+.spec-pill-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--cobalt);
+  margin-bottom: 2px;
+}
+
+.spec-pill-label {
+  font-size: 0.78rem;
+  color: var(--ink-500);
+  letter-spacing: 0.06em;
+}
+
+/* 十二人物群像预览区 */
+.roster-preview {
+  background: rgba(239, 231, 215, 0.55);
+  border: 1px dashed var(--ink-300, #C5BAA8);
+  padding: 16px 18px;
+  margin-bottom: 28px;
+}
+
+.roster-preview-title {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  color: var(--ink-500);
+  text-align: center;
+  letter-spacing: 0.18em;
+  margin-bottom: 12px;
+}
+
+.roster-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.roster-chip {
+  font-family: var(--font-serif);
+  font-size: 0.84rem;
+  color: var(--ink-700);
+  background: var(--bg-card);
+  border: 1px solid var(--ink-200);
+  padding: 3px 11px;
+  letter-spacing: 0.08em;
+}
+
+/* 按钮组 */
+.cta-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-primary {
+  appearance: none;
+  border: 1px solid var(--vermilion);
+  background: var(--vermilion);
+  color: #FAF6EE;
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  padding: 15px 42px;
+  width: 100%;
+  max-width: 340px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.22s ease;
+  box-shadow: 0 6px 18px rgba(158, 42, 43, 0.24), inset 0 0 0 2px rgba(250, 246, 238, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--vermilion-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(158, 42, 43, 0.32), inset 0 0 0 2px rgba(250, 246, 238, 0.35);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-secondary {
+  appearance: none;
+  background: var(--bg-card);
+  border: 1px solid var(--ink-400);
+  color: var(--ink-700);
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  letter-spacing: 0.12em;
+  padding: 11px 22px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--ink-900);
+  color: var(--ink-900);
+  background: var(--bg-paper);
+}
+
+.resume-banner {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: var(--cobalt);
+  background: var(--cobalt-soft);
+  border: 1px solid rgba(31, 68, 90, 0.22);
+  padding: 8px 16px;
+  width: 100%;
+  max-width: 340px;
+}
+
+.resume-banner.visible {
+  display: flex;
+}
+
+.resume-link {
+  background: none;
+  border: none;
+  color: var(--vermilion);
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.disclaimer-note {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 0.76rem;
+  color: var(--ink-400);
+  letter-spacing: 0.04em;
+}
+
+/* ==========================================================================
+   答题页 View (Quiz)
+   ========================================================================== */
+.quiz-progress-panel {
+  margin-bottom: 24px;
+}
+
+.quiz-meta-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.chapter-badge {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--vermilion);
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chapter-badge::before {
+  content: "";
+  width: 3px;
+  height: 13px;
+  background: var(--vermilion);
+  display: inline-block;
+}
+
+.progress-counter {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  color: var(--ink-500);
+  letter-spacing: 0.08em;
+}
+
+.progress-counter strong {
+  color: var(--ink-900);
+  font-size: 1.12rem;
+}
+
+.progress-track {
+  width: 100%;
+  height: 6px;
+  background: var(--ink-100);
+  border: 1px solid var(--ink-200);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--cobalt) 0%, var(--vermilion) 100%);
+  transition: width 0.36s var(--ease-out-quart);
+}
+
+/* 题目主体动画区 */
+.question-stage {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.question-stage.anim-next {
+  animation: slideInNext 0.32s var(--ease-out-quart);
+}
+
+.question-stage.anim-prev {
+  animation: slideInPrev 0.32s var(--ease-out-quart);
+}
+
+@keyframes slideInNext {
+  from { opacity: 0; transform: translateX(22px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInPrev {
+  from { opacity: 0; transform: translateX(-22px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.question-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.14rem, 3.4vw, 1.35rem);
+  font-weight: 700;
+  color: var(--ink-900);
+  line-height: 1.62;
+  margin-bottom: 24px;
+  letter-spacing: 0.03em;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.option-btn {
+  appearance: none;
+  width: 100%;
+  text-align: left;
+  background: var(--bg-paper);
+  border: 1px solid var(--ink-200);
+  padding: 15px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  position: relative;
+  color: var(--ink-900);
+  font-family: var(--font-sans);
+  font-size: 0.97rem;
+  line-height: 1.55;
+}
+
+.option-btn:hover {
+  background: #FBF6EC;
+  border-color: var(--gold);
+  transform: translateX(3px);
+}
+
+.option-btn.selected {
+  background: #FCF4F2;
+  border-color: var(--vermilion);
+  box-shadow: inset 3px 0 0 var(--vermilion), 0 3px 10px rgba(158, 42, 43, 0.08);
+}
+
+.option-key {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--ink-400);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink-700);
+  background: var(--bg-card);
+  margin-top: 1px;
+  transition: all 0.18s ease;
+}
+
+.option-btn:hover .option-key {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.option-btn.selected .option-key {
+  background: var(--vermilion);
+  border-color: var(--vermilion);
+  color: #FAF6EE;
+}
+
+.option-text {
+  flex: 1;
+}
+
+/* 底部翻页控制栏 */
+.quiz-nav-bar {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--ink-100);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.nav-link-btn {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--ink-200);
+  color: var(--ink-700);
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.nav-link-btn:hover:not(:disabled) {
+  border-color: var(--ink-700);
+  color: var(--ink-900);
+  background: var(--bg-paper);
+}
+
+.nav-link-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.quiz-keyboard-tip {
+  font-size: 0.76rem;
+  color: var(--ink-400);
+}
+
+/* ==========================================================================
+   司礼监批红过渡页 (Computing View)
+   ========================================================================== */
+.computing-box {
+  text-align: center;
+  padding: 64px 20px;
+}
+
+.computing-seal {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 24px;
+  font-size: 1.25rem;
+  animation: stampPulse 1.1s ease-in-out infinite alternate;
+}
+
+@keyframes stampPulse {
+  from { transform: scale(0.95) rotate(-3deg); box-shadow: 0 4px 12px rgba(158, 42, 43, 0.2); }
+  to { transform: scale(1.04) rotate(1deg); box-shadow: 0 10px 28px rgba(158, 42, 43, 0.38); }
+}
+
+.computing-title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--ink-900);
+  letter-spacing: 0.2em;
+  margin-bottom: 10px;
+}
+
+.computing-sub {
+  font-size: 0.9rem;
+  color: var(--ink-500);
+  letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   结果海报卡片页 View (Result Poster)
+   专为小红书 3:4 / 朋友圈长图截图优化
+   ========================================================================== */
+.poster-card {
+  background: var(--bg-card);
+  border: 2px solid var(--ink-900);
+  padding: 6px;
+  box-shadow: var(--shadow-scroll);
+  position: relative;
+}
+
+.poster-inner {
+  border: 1px solid var(--gold);
+  background:
+    radial-gradient(circle at 88% 8%, rgba(158, 42, 43, 0.06) 0%, transparent 42%),
+    radial-gradient(circle at 10% 45%, rgba(31, 68, 90, 0.05) 0%, transparent 45%),
+    linear-gradient(180deg, #F7F1E5 0%, #FBF8F2 25%, #FAF6ED 100%);
+  padding: 32px 28px 26px;
+  position: relative;
+}
+
+.poster-top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-serif);
+  font-size: 0.76rem;
+  color: var(--ink-500);
+  letter-spacing: 0.16em;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--ink-200);
+  margin-bottom: 22px;
+}
+
+/* 人物主视觉区 */
+.character-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.character-identity {
+  flex: 1;
+}
+
+.match-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--vermilion);
+  font-family: var(--font-serif);
+  letter-spacing: 0.14em;
+  margin-bottom: 6px;
+}
+
+.match-badge-pct {
+  background: var(--vermilion);
+  color: #FAF6EE;
+  padding: 1px 8px;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+}
+
+.character-name-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.character-name {
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 6.5vw, 2.85rem);
+  font-weight: 700;
+  color: var(--ink-900);
+  letter-spacing: 0.1em;
+  line-height: 1.15;
+}
+
+.character-courtesy {
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  color: var(--ink-500);
+  letter-spacing: 0.1em;
+}
+
+.character-verdict {
+  font-family: var(--font-serif);
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: var(--cobalt);
+  letter-spacing: 0.16em;
+  margin-top: 4px;
+}
+
+.character-emblem-box {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.character-seal-large {
+  width: 58px;
+  height: 58px;
+  font-size: 1.15rem;
+  letter-spacing: 0.1em;
+}
+
+/* 人物判词标签 */
+.character-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.char-tag {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  color: var(--ink-900);
+  background: var(--bg-paper);
+  border: 1px solid var(--gold-light);
+  padding: 4px 12px;
+  letter-spacing: 0.08em;
+}
+
+/* 专属记忆点金句文案框 */
+.quote-scroll-box {
+  background: var(--bg-paper);
+  border-left: 3px solid var(--vermilion);
+  border-right: 1px solid var(--ink-200);
+  border-top: 1px solid var(--ink-200);
+  border-bottom: 1px solid var(--ink-200);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.quote-scroll-text {
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--ink-900);
+  line-height: 1.75;
+  letter-spacing: 0.04em;
+}
+
+/* 六维雷达与副人格双栏区 */
+.radar-panel {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 18px;
+  align-items: center;
+  background: rgba(245, 239, 228, 0.65);
+  border: 1px solid var(--ink-200);
+  padding: 16px 18px;
+  margin-bottom: 22px;
+}
+
+.radar-svg-wrap {
+  width: 100%;
+  max-width: 220px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.radar-svg-wrap svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.dim-bars-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.dim-bar-item {
+  display: grid;
+  grid-template-columns: 42px 1fr 34px;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+}
+
+.dim-bar-name {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--ink-700);
+  letter-spacing: 0.06em;
+}
+
+.dim-bar-track {
+  height: 6px;
+  background: var(--ink-100);
+  overflow: hidden;
+}
+
+.dim-bar-fill {
+  height: 100%;
+  background: var(--cobalt);
+  transition: width 0.6s var(--ease-out-quart);
+}
+
+.dim-bar-val {
+  text-align: right;
+  font-family: var(--font-serif);
+  color: var(--ink-500);
+  font-weight: 600;
+}
+
+.runner-up-note {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--ink-200);
+  font-size: 0.79rem;
+  color: var(--ink-500);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.runner-up-note strong {
+  color: var(--vermilion);
+  font-family: var(--font-serif);
+}
+
+/* 深度解析模块 */
+.analysis-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.analysis-block {
+  background: #FDFBF7;
+  border: 1px solid var(--ink-100);
+  padding: 15px 18px;
+}
+
+.analysis-heading {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink-900);
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.analysis-heading .heading-mark {
+  width: 8px;
+  height: 8px;
+  background: var(--vermilion);
+  transform: rotate(45deg);
+  display: inline-block;
+}
+
+.analysis-body {
+  font-size: 0.91rem;
+  color: var(--ink-700);
+  line-height: 1.72;
+  text-align: justify;
+}
+
+/* 趣味彩蛋 · 嘉靖朝生存指南 */
+.easter-egg-panel {
+  background: linear-gradient(135deg, rgba(31, 68, 90, 0.05) 0%, rgba(166, 130, 70, 0.08) 100%);
+  border: 1px solid var(--gold-light);
+  padding: 16px 18px;
+  margin-bottom: 20px;
+}
+
+.easter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.easter-item {
+  background: rgba(251, 248, 242, 0.85);
+  border: 1px solid var(--ink-100);
+  padding: 10px 12px;
+}
+
+.easter-item.full-span {
+  grid-column: 1 / -1;
+}
+
+.easter-label {
+  font-family: var(--font-serif);
+  font-size: 0.77rem;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 3px;
+}
+
+.easter-val {
+  font-size: 0.86rem;
+  color: var(--ink-900);
+  line-height: 1.55;
+}
+
+/* 海报底部扫码入局落款栏 */
+.poster-footer {
+  padding-top: 16px;
+  border-top: 1px solid var(--ink-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.poster-footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.poster-footer-cta {
+  font-family: var(--font-serif);
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--ink-900);
+  letter-spacing: 0.06em;
+}
+
+.poster-footer-sub {
+  font-size: 0.78rem;
+  color: var(--ink-500);
+  line-height: 1.45;
+}
+
+.poster-footer-seal {
+  align-self: flex-start;
+  color: var(--vermilion);
+  border: 1px solid var(--vermilion-border);
+  background: var(--vermilion-soft);
+  padding: 2px 8px;
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+
+.poster-qr-frame {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.poster-qr-box {
+  width: 84px;
+  height: 84px;
+  padding: 3px;
+  background: #FFFFFF;
+  border: 1px solid var(--gold-light);
+  box-shadow: 0 2px 6px rgba(26, 24, 21, 0.06);
+}
+
+.poster-qr-box svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.poster-qr-caption {
+  font-family: var(--font-serif);
+  font-size: 0.68rem;
+  color: var(--ink-500);
+  letter-spacing: 0.1em;
+}
+
+/* 结果页底部操作栏（不进入海报卡片内部，截图更干净） */
+.result-actions-bar {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.result-actions-bar .btn-primary {
+  max-width: none;
+  grid-column: 1 / -1;
+  padding: 14px 24px;
+}
+
+/* 二维码跳转网址自定义设置条 */
+.qr-url-config {
+  margin-top: 14px;
+  background: rgba(245, 239, 228, 0.75);
+  border: 1px dashed var(--ink-200);
+  padding: 12px 14px;
+  font-size: 0.8rem;
+  color: var(--ink-500);
+}
+
+.qr-url-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.qr-url-input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--ink-200);
+  background: #FFFFFF;
+  color: var(--ink-900);
+  padding: 7px 10px;
+  font-size: 0.82rem;
+  font-family: var(--font-sans);
+  outline: none;
+}
+
+.qr-url-input:focus {
+  border-color: var(--vermilion);
+}
+
+.qr-url-btn {
+  appearance: none;
+  background: var(--cobalt);
+  color: #FAF6EE;
+  border: none;
+  padding: 7px 14px;
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.qr-url-btn:hover {
+  opacity: 0.92;
+}
+
+/* 纯净截图模式 */
+body.clean-shot-mode {
+  padding-top: 12px;
+  padding-bottom: 16px;
+}
+
+body.clean-shot-mode .top-ambient-bar,
+body.clean-shot-mode .result-actions-bar,
+body.clean-shot-mode .qr-url-config {
+  display: none !important;
+}
+
+.clean-shot-toast {
+  display: none;
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(26, 24, 21, 0.82);
+  color: #FAF6EE;
+  font-size: 0.8rem;
+  padding: 8px 18px;
+  border-radius: 999px;
+  z-index: 100;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+body.clean-shot-mode .clean-shot-toast {
+  display: block;
+}
+
+/* 轻提示 Toast */
+.toast-msg {
+  position: fixed;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-16px);
+  background: var(--ink-900);
+  color: #FAF6EE;
+  border: 1px solid var(--gold);
+  padding: 10px 22px;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.26s var(--ease-out-quart);
+  z-index: 200;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.toast-msg.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* 海报图片预览弹窗（兼容微信/手机端长按保存） */
+.poster-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 18, 15, 0.82);
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(3px);
+}
+
+.poster-modal.open {
+  display: flex;
+}
+
+.poster-modal-box {
+  background: var(--bg-card);
+  border: 2px solid var(--gold);
+  max-width: 440px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.poster-modal-header {
+  padding: 12px 16px;
+  background: var(--bg-paper);
+  border-bottom: 1px solid var(--ink-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  color: var(--ink-900);
+}
+
+.poster-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: var(--ink-700);
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 6px;
+}
+
+.poster-modal-body {
+  padding: 14px;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.poster-modal-body img {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: var(--shadow-card);
+}
+
+.poster-modal-tip {
+  padding: 10px 16px 14px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--ink-500);
+  background: var(--bg-paper);
+  border-top: 1px solid var(--ink-200);
+}
+
+/* ==========================================================================
+   移动端响应式适配
+   ========================================================================== */
+@media (max-width: 600px) {
+  body {
+    padding: 14px 10px 36px;
+  }
+
+  .ming-folio-inner {
+    padding: 24px 18px;
+  }
+
+  .spec-pills {
+    gap: 8px;
+  }
+
+  .spec-pill {
+    padding: 10px 6px;
+  }
+
+  .spec-pill-num {
+    font-size: 1.05rem;
+  }
+
+  .quiz-keyboard-tip {
+    display: none;
+  }
+
+  .option-btn {
+    padding: 14px 14px;
+    gap: 11px;
+    font-size: 0.94rem;
+  }
+
+  .poster-inner {
+    padding: 24px 18px 20px;
+  }
+
+  .radar-panel {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .radar-svg-wrap {
+    max-width: 195px;
+  }
+
+  .easter-grid {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .poster-footer {
+    gap: 12px;
+  }
+
+  .poster-qr-box {
+    width: 74px;
+    height: 74px;
+  }
+
+  .result-actions-bar {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+</head>
+<body>
+  <!-- 顶部卷首眉标 -->
+  <header class="top-ambient-bar" aria-label="卷首款识">
+    <span class="dynasty-mark">
+      <i class="dot-ornament"></i>
+      <span>大明嘉靖四十五年 · 丙寅岁</span>
+    </span>
+    <span>司礼监 · 性情考卷</span>
+  </header>
+
+  <main class="app-stage">
+    <!-- ==================== 1. 测试首页 ==================== -->
+    <section id="view-home" class="view-section active" aria-labelledby="main-quiz-title">
+      <div class="ming-folio">
+        <div class="ming-folio-inner">
+          <span class="corner-ornament tl"></span>
+          <span class="corner-ornament tr"></span>
+          <span class="corner-ornament bl"></span>
+          <span class="corner-ornament br"></span>
+
+          <div class="hero-header">
+            <span class="folio-kicker">趣味处世人格测试 · 零剧透门槛</span>
+            <div class="hero-title-wrap">
+              <span class="hero-pretitle">展卷入局 · 照见本心</span>
+              <h1 id="main-quiz-title" class="hero-title">
+                测测你是<span class="highlight-drama">《大明王朝1566》</span>里的谁
+              </h1>
+            </div>
+            <div class="hero-seal-row">
+              <span class="seal-stamp" aria-hidden="true">入局</span>
+            </div>
+          </div>
+
+          <p class="hero-quote">
+            庙堂之上，云在青天水在瓶；江湖之远，一叶扁舟听广陵。<br />
+            不考历史典故，不问剧情细节——从三十道现代职场与日常情境，看透你的处世锋芒、隐忍分寸与灵魂底色。
+          </p>
+
+          <div class="spec-pills">
+            <div class="spec-pill">
+              <span class="spec-pill-num">30 题</span>
+              <span class="spec-pill-label">生活化情境单选</span>
+            </div>
+            <div class="spec-pill">
+              <span class="spec-pill-num">六 维</span>
+              <span class="spec-pill-label">心性雷达图谱</span>
+            </div>
+            <div class="spec-pill">
+              <span class="spec-pill-num">12 位</span>
+              <span class="spec-pill-label">经典群像归属</span>
+            </div>
+          </div>
+
+          <div class="roster-preview">
+            <div class="roster-preview-title">— 卷中十二位灵魂人物 —</div>
+            <div id="roster-chips" class="roster-chips"></div>
+          </div>
+
+          <div class="cta-group">
+            <button id="btn-start" type="button" class="btn-primary">
+              展卷入局 · 开始测试
+            </button>
+            <div id="resume-banner" class="resume-banner">
+              <span>尚有未竟考卷（已答 <strong id="resume-count">0</strong>/30 题）</span>
+              <button id="btn-resume" type="button" class="resume-link">继续作答 →</button>
+            </div>
+          </div>
+
+          <p class="disclaimer-note">
+            注：本测试定位于趣味人格探索，非影视剧情考试，亦非专业心理诊断。凭第一直觉作答最为神准。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 2. 逐题作答页 ==================== -->
+    <section id="view-quiz" class="view-section" aria-live="polite">
+      <div class="ming-folio">
+        <div class="ming-folio-inner">
+          <span class="corner-ornament tl"></span>
+          <span class="corner-ornament tr"></span>
+          <span class="corner-ornament bl"></span>
+          <span class="corner-ornament br"></span>
+
+          <div class="quiz-progress-panel">
+            <div class="quiz-meta-row">
+              <span id="chapter-badge" class="chapter-badge">第一部分 · 日常状态</span>
+              <span class="progress-counter">
+                第 <strong id="current-q-num">01</strong> / <span id="total-q-num">30</span> 题
+              </span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuemin="1" aria-valuemax="30">
+              <div id="progress-fill" class="progress-fill"></div>
+            </div>
+          </div>
+
+          <div id="question-stage" class="question-stage">
+            <div>
+              <h2 id="question-title" class="question-title"></h2>
+              <div id="options-list" class="options-list"></div>
+            </div>
+
+            <div class="quiz-nav-bar">
+              <button id="btn-prev" type="button" class="nav-link-btn" disabled>
+                ← 返回上一题
+              </button>
+              <span class="quiz-keyboard-tip">支持按键 A-D 作答</span>
+              <button id="btn-next" type="button" class="nav-link-btn" disabled>
+                下一题 →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. 司礼监批红计算过渡页 ==================== -->
+    <section id="view-computing" class="view-section" aria-live="polite">
+      <div class="ming-folio">
+        <div class="ming-folio-inner computing-box">
+          <div class="seal-stamp computing-seal">批红</div>
+          <h2 class="computing-title">司礼监正在合算心性图谱…</h2>
+          <p class="computing-sub">权衡六维进退分寸，推演你的嘉靖朝命定入局人</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. 结果海报页 ==================== -->
+    <section id="view-result" class="view-section" aria-labelledby="res-name">
+      <!-- 海报主体卡片（适合直接手机截图分享小红书/朋友圈） -->
+      <article id="poster-card" class="poster-card">
+        <div class="poster-inner">
+          <span class="corner-ornament tl"></span>
+          <span class="corner-ornament tr"></span>
+          <span class="corner-ornament bl"></span>
+          <span class="corner-ornament br"></span>
+
+          <div class="poster-top-meta">
+            <span>《测测你是〈大明王朝1566〉里的谁》</span>
+            <span>司礼监朱批判词</span>
+          </div>
+
+          <div class="character-hero">
+            <div class="character-identity">
+              <div class="match-kicker">
+                <span>命定入局人物</span>
+                <span id="res-match-pct" class="match-badge-pct">灵魂契合度 95%</span>
+              </div>
+              <div class="character-name-row">
+                <h2 id="res-name" class="character-name">胡宗宪</h2>
+                <span id="res-courtesy" class="character-courtesy">胡汝贞 · 东南柱石</span>
+              </div>
+              <div id="res-verdict" class="character-verdict">负重致远 · 泥泞孤臣</div>
+            </div>
+
+            <div class="character-emblem-box">
+              <div id="res-seal" class="seal-stamp character-seal-large" aria-hidden="true">担当</div>
+            </div>
+          </div>
+
+          <div id="res-tags" class="character-tags"></div>
+
+          <blockquote class="quote-scroll-box">
+            <p id="res-quote" class="quote-scroll-text"></p>
+          </blockquote>
+
+          <!-- 六维心性雷达图与数值面板 -->
+          <div class="radar-panel">
+            <div id="res-radar-wrap" class="radar-svg-wrap"></div>
+            <div>
+              <div id="res-dim-bars" class="dim-bars-list"></div>
+              <div id="res-runner-up" class="runner-up-note"></div>
+            </div>
+          </div>
+
+          <!-- 深度判词解析 -->
+          <div class="analysis-sections">
+            <div class="analysis-block">
+              <h3 class="analysis-heading">
+                <span class="heading-mark"></span>
+                <span>性格本色</span>
+              </h3>
+              <p id="res-traits" class="analysis-body"></p>
+            </div>
+
+            <div class="analysis-block">
+              <h3 class="analysis-heading">
+                <span class="heading-mark"></span>
+                <span>匹配理由</span>
+              </h3>
+              <p id="res-reason" class="analysis-body"></p>
+            </div>
+
+            <div class="analysis-block">
+              <h3 class="analysis-heading">
+                <span class="heading-mark"></span>
+                <span>处世/职场隐藏优势</span>
+              </h3>
+              <p id="res-advantage" class="analysis-body"></p>
+            </div>
+          </div>
+
+          <!-- 趣味彩蛋 · 嘉靖朝生存指南 -->
+          <div class="easter-egg-panel">
+            <h3 class="analysis-heading">
+              <span class="heading-mark"></span>
+              <span>趣味彩蛋 · 嘉靖朝生存指南</span>
+            </h3>
+            <div class="easter-grid">
+              <div class="easter-item full-span">
+                <div class="easter-label">🏮 大明生存结局</div>
+                <div id="res-survival" class="easter-val"></div>
+              </div>
+              <div class="easter-item">
+                <div class="easter-label">🤝 最佳同僚搭子</div>
+                <div id="res-ally" class="easter-val"></div>
+              </div>
+              <div class="easter-item">
+                <div class="easter-label">⚡ 宿命职场天敌</div>
+                <div id="res-nemesis" class="easter-val"></div>
+              </div>
+              <div class="easter-item full-span">
+                <div class="easter-label">📜 司礼监赠言锦囊</div>
+                <div id="res-tip" class="easter-val"></div>
+              </div>
+            </div>
+          </div>
+
+          <footer class="poster-footer">
+            <div class="poster-footer-left">
+              <div class="poster-footer-cta">扫码入局 · 测测你是《大明王朝1566》里的谁</div>
+              <div class="poster-footer-sub">30道大白话处世情境题 · 不考历史，只看透你的职场与性格底色</div>
+              <span class="poster-footer-seal">大明王朝1566 · 灵魂人物图谱</span>
+            </div>
+            <div class="poster-qr-frame">
+              <div id="res-qr-box" class="poster-qr-box" aria-label="测试网页二维码"></div>
+              <span class="poster-qr-caption">长按或扫码测试</span>
+            </div>
+          </footer>
+        </div>
+      </article>
+
+      <!-- 海报外置操作栏 -->
+      <div class="result-actions-bar">
+        <button id="btn-save-poster" type="button" class="btn-primary">
+          保存带二维码高清海报（适合发小红书/朋友圈）
+        </button>
+        <button id="btn-copy-text" type="button" class="btn-secondary">
+          复制专属分享文案
+        </button>
+        <button id="btn-clean-shot" type="button" class="btn-secondary">
+          开启纯净截图模式
+        </button>
+        <button id="btn-restart" type="button" class="btn-secondary" style="grid-column: 1 / -1;">
+          重新展卷测试
+        </button>
+      </div>
+
+      <!-- 二维码跳转链接设置（部署上线后自动识别当前网址，也可手动指定） -->
+      <div id="qr-url-config" class="qr-url-config">
+        <div>🔗 <strong>海报二维码跳转网址</strong>（网页部署上线后会自动识别公网地址，也可手动填写你的分享链接）：</div>
+        <div class="qr-url-row">
+          <input id="qr-url-input" type="url" class="qr-url-input" placeholder="例如 https://你的网站域名.com" />
+          <button id="btn-update-qr" type="button" class="qr-url-btn">更新二维码</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 纯净截图提示浮条 -->
+  <div id="clean-shot-toast" class="clean-shot-toast">
+    已隐藏操作按钮，可直接截屏分享 · 点击任意处恢复
+  </div>
+
+  <!-- 全局轻提示 -->
+  <div id="toast-msg" class="toast-msg" role="status" aria-live="polite"></div>
+
+  <!-- 高清海报预览弹窗 -->
+  <div id="poster-modal" class="poster-modal" role="dialog" aria-modal="true" aria-labelledby="poster-modal-title">
+    <div class="poster-modal-box">
+      <div class="poster-modal-header">
+        <span id="poster-modal-title">专属判词海报已生成（含扫码二维码）</span>
+        <button id="poster-modal-close" type="button" class="poster-modal-close" aria-label="关闭预览">×</button>
+      </div>
+      <div class="poster-modal-body">
+        <img id="poster-modal-img" alt="大明王朝1566灵魂人物判词海报" />
+      </div>
+      <div class="poster-modal-tip">
+        电脑端已自动下载 PNG；手机端可长按上方图片保存至相册
+      </div>
+    </div>
+  </div>
+
+  <script>
+/**
+ * 《测测你是〈大明王朝1566〉里的谁》核心配置、大白话题库与人物数据库
+ */
+
+const QUIZ_CONFIG = {
+  // 本地打开或未识别到公网域名时，默认使用的线上公开测试链接
+  defaultShareUrl: 'https://vkvkvickii-art.github.io/ming1566-quiz/'
+};
+
+const DIMENSIONS = [
+  { key: 'zhidao',   name: '执道', fullName: '执道守正', lowLabel: '灵活变通', highLabel: '认死理讲原则', desc: '面对潜规则和妥协时，死守底线的程度' },
+  { key: 'yuju',     name: '驭局', fullName: '全局操盘', lowLabel: '管好自己', highLabel: '掌控全局', desc: '在复杂局面里统筹安排、调动别人的倾向' },
+  { key: 'cangfeng', name: '藏锋', fullName: '藏锋隐忍', lowLabel: '有啥说啥', highLabel: '沉得住气', desc: '把真实情绪和底牌藏在心里的克制力' },
+  { key: 'renshi',   name: '任事', fullName: '实干扛事', lowLabel: '及时抽身', highLabel: '迎难扛事', desc: '遇到麻烦烂摊子时，主动顶上去解决的意愿' },
+  { key: 'wenqing',  name: '温情', fullName: '悲悯人情', lowLabel: '冷静算账', highLabel: '心软重情义', desc: '做决定时有多在乎别人的难处和感情' },
+  { key: 'fenggu',   name: '风骨', fullName: '清雅风骨', lowLabel: '务实接地气', highLabel: '追求精神自由', desc: '比起赚钱升职，有多看重个人审美和内心清净' }
+];
+
+const QUESTIONS = [
+  // 第一部分 · 日常习惯
+  {
+    id: 1,
+    chapter: '第一部分 · 日常状态',
+    question: '周末终于有一天不用回任何工作消息，你最想怎么过？',
+    options: [
+      { label: 'A', text: '关起门自己待着，听歌、看书、喝茶或者发呆，谁也别找我', scores: { cangfeng: 2, renshi: -2, fenggu: 3, yuju: -1 } },
+      { label: 'B', text: '喊两三个最熟的朋友出来吃顿好的，聊聊天吐吐槽', scores: { wenqing: 3, cangfeng: -1, fenggu: -1, yuju: -1 } },
+      { label: 'C', text: '把家里收拾利索，顺便把下周要办的事理个清单，心里踏实', scores: { yuju: 2, renshi: 2, wenqing: -1, fenggu: -1 } },
+      { label: 'D', text: '出门跑步、打球或者徒步，痛痛快快出顿汗把脑子清空', scores: { zhidao: 2, cangfeng: -2, renshi: 2 } }
+    ]
+  },
+  {
+    id: 2,
+    chapter: '第一部分 · 日常状态',
+    question: '一群人聚餐点菜，大家都在客气说“随便，看你们”，你一般怎么弄？',
+    options: [
+      { label: 'A', text: '先不吭声听大家聊一圈，最后拍板点一两道镇场子的硬菜', scores: { yuju: 3, cangfeng: 2, wenqing: -2 } },
+      { label: 'B', text: '主动接过菜单，问清楚谁不吃辣、谁有忌口，把每个人都照顾到', scores: { wenqing: 3, renshi: 2, zhidao: -1 } },
+      { label: 'C', text: '直接点两个自己想吃的菜，懒得来回推让耽误工夫', scores: { zhidao: 2, cangfeng: -3, fenggu: 1 } },
+      { label: 'D', text: '看谁请客或者谁辈分高就顺着谁夸两句，自己绝不抢风头', scores: { zhidao: -2, cangfeng: 2, renshi: -2 } }
+    ]
+  },
+  {
+    id: 3,
+    chapter: '第一部分 · 日常状态',
+    question: '平时看剧或者看电影，哪种角色最让你上头？',
+    options: [
+      { label: 'A', text: '认准一个理就死磕到底，哪怕得罪全世界也不低头的硬骨头', scores: { zhidao: 3, cangfeng: -2, renshi: 2 } },
+      { label: 'B', text: '自己受尽夹板气，但拼了命也要把大家护在身后的老大哥/老大姐', scores: { renshi: 3, wenqing: 2, zhidao: -1 } },
+      { label: 'C', text: '脸上永远笑眯眯看不出深浅，其实背后每一步都算准了的高手', scores: { yuju: 3, cangfeng: 3, wenqing: -2 } },
+      { label: 'D', text: '有才华又有品味，虽然混在圈子里但早就看透名利的明白人', scores: { fenggu: 3, renshi: -2, yuju: -2 } }
+    ]
+  },
+  {
+    id: 4,
+    chapter: '第一部分 · 日常状态',
+    question: '你平时的办公桌或者房间桌面，一般是什么样子的？',
+    options: [
+      { label: 'A', text: '干干净净啥多余东西都不放，外人根本看不出我的喜好', scores: { cangfeng: 2, zhidao: 1, wenqing: -2 } },
+      { label: 'B', text: '杯子、摆件、灯光都得挑好看有质感的，乱一点没事但不能丑', scores: { fenggu: 3, zhidao: 1, renshi: -1 } },
+      { label: 'C', text: '堆着好几摊正在干的活，别人看着乱，但我自己闭着眼都能摸到', scores: { renshi: 3, yuju: 1, fenggu: -2 } },
+      { label: 'D', text: '常备零食、纸巾、充电线，同事朋友缺啥都能来我这顺手拿', scores: { wenqing: 3, yuju: -1, zhidao: -1 } }
+    ]
+  },
+  {
+    id: 5,
+    chapter: '第一部分 · 日常状态',
+    question: '半夜翻来覆去睡不着的时候，你脑子里最常想的是啥？',
+    options: [
+      { label: 'A', text: '想起某件特别不公平、不讲理的事，越想越替人窝火', scores: { zhidao: 3, cangfeng: -2, wenqing: 1 } },
+      { label: 'B', text: '盘算未来一两年怎么升职、转型或者搞钱，下一步棋怎么走', scores: { yuju: 3, cangfeng: 2, fenggu: -1 } },
+      { label: 'C', text: '琢磨白天哪句话是不是说重了，或者手头的事还有啥漏洞没补', scores: { cangfeng: 2, wenqing: 2, zhidao: -1 } },
+      { label: 'D', text: '感叹天天忙这些破事有啥意思，啥时候才能彻底躺平去过清净日子', scores: { fenggu: 3, renshi: -3, yuju: -2 } }
+    ]
+  },
+
+  // 第二部分 · 工作风格
+  {
+    id: 6,
+    chapter: '第二部分 · 工作风格',
+    question: '老板突然甩给你一个时间紧、没预算、别的部门还不配合的烂摊子，你第一反应是？',
+    options: [
+      { label: 'A', text: '咬牙先接过来，一边找老板要缓冲，一边自己加班加点硬啃下来', scores: { renshi: 3, wenqing: 2, yuju: 1 } },
+      { label: 'B', text: '先把丑话说前头、留好文字记录，分清哪部分归我管，绝不白背黑锅', scores: { zhidao: -2, renshi: -2, wenqing: -2, cangfeng: 1 } },
+      { label: 'C', text: '干脆借这个项目把各方利益绑一块儿，顺手树立自己的话语权', scores: { yuju: 3, renshi: 2, wenqing: -1 } },
+      { label: 'D', text: '直接跟老板挑明这活不合常理，不给够资源和权限没法干', scores: { zhidao: 3, cangfeng: -2, yuju: -1 } }
+    ]
+  },
+  {
+    id: 7,
+    chapter: '第二部分 · 工作风格',
+    question: '开大会时，大领导刚定下来的新方案明显有大坑，但全场都在点头附和，你会？',
+    options: [
+      { label: 'A', text: '直接举手把问题摆出来，现在不讲清楚，后面爆雷大家更惨', scores: { zhidao: 3, cangfeng: -3, renshi: 1 } },
+      { label: 'B', text: '会上不吭声给足领导面子，散会后私下找他提个醒、递个备选方案', scores: { cangfeng: 3, renshi: 2, wenqing: 1 } },
+      { label: 'C', text: '看破不说破，领导自己拍的板，我照做留好底、把自己摘干净就行', scores: { zhidao: -3, cangfeng: 2, renshi: -2 } },
+      { label: 'D', text: '装作请教执行细节，顺嘴问两个关键问题，引导领导自己发现不对劲', scores: { yuju: 2, cangfeng: 2, zhidao: -1 } }
+    ]
+  },
+  {
+    id: 8,
+    chapter: '第二部分 · 工作风格',
+    question: '组里有个同事总爱把累活推给你，到领导面前邀功却冲在第一个，你会怎么办？',
+    options: [
+      { label: 'A', text: '直接把聊天记录和分工甩出来硬刚，我的功劳别想抢，不是我的活不干', scores: { zhidao: 2, cangfeng: -3, wenqing: -1 } },
+      { label: 'B', text: '表面上不撕破脸，暗地里留好证据，在关键汇报上让领导看清到底谁在干活', scores: { cangfeng: 3, yuju: 2, zhidao: -1 } },
+      { label: 'C', text: '算了，只要项目别黄就行，他爱抢那点虚名就让他拿去吧', scores: { renshi: 2, wenqing: 2, fenggu: 1, yuju: 1 } },
+      { label: 'D', text: '懒得跟这种人扯皮内耗，找机会换个自己单干、清静点的岗位', scores: { fenggu: 3, yuju: -3, renshi: -2 } }
+    ]
+  },
+  {
+    id: 9,
+    chapter: '第二部分 · 工作风格',
+    question: '如果让你当主管带一个十来人的小团队，你最像哪种领导？',
+    options: [
+      { label: 'A', text: '抓大放小，让不同性格的下属互相搭档也互相制衡，自己坐镇把关', scores: { yuju: 3, cangfeng: 3, wenqing: -2, renshi: -1 } },
+      { label: 'B', text: '护犊子型，外面的压力和黑锅我来顶，大家跟着我踏踏实实干活就行', scores: { renshi: 3, wenqing: 3, yuju: 1 } },
+      { label: 'C', text: '丑话说前头、按制度办事，行就行不行就换人，少拿私交讲人情', scores: { yuju: 2, renshi: 2, wenqing: -3, zhidao: 1 } },
+      { label: 'D', text: '和气管家型，平时多关心大家累不累、家里顺不顺，靠人情味把人拢住', scores: { wenqing: 3, cangfeng: 1, zhidao: -1, yuju: 1 } }
+    ]
+  },
+  {
+    id: 10,
+    chapter: '第二部分 · 工作风格',
+    question: '年底写年终总结PPT向领导汇报时，你心里是怎么想、怎么干的？',
+    options: [
+      { label: 'A', text: '摸准领导今年最想听什么词，顺着他的思路包装，句句挠在痒处', scores: { zhidao: -3, cangfeng: 2, yuju: 2, fenggu: -2 } },
+      { label: 'B', text: '干了一分活就写一分话，有啥问题也实话实说，最烦凑字数吹牛', scores: { zhidao: 3, cangfeng: -2, fenggu: 1 } },
+      { label: 'C', text: '排版审美和逻辑必须漂亮讲究，绝不能做得土里土气丢份儿', scores: { fenggu: 2, yuju: 1, renshi: -1 } },
+      { label: 'D', text: '多把帮忙的同事都点名夸一遍，功劳大家分，花花轿子众人抬', scores: { wenqing: 3, cangfeng: 1, zhidao: -1 } }
+    ]
+  },
+
+  // 第三部分 · 人际社交
+  {
+    id: 11,
+    chapter: '第三部分 · 人际交往',
+    question: '刚进一家人际关系很复杂的新公司，前三个月你会怎么处？',
+    options: [
+      { label: 'A', text: '多看少说，没摸清谁跟谁是一伙的之前，绝不随便表态站队', scores: { cangfeng: 3, yuju: 2, wenqing: -1 } },
+      { label: 'B', text: '见人三分笑、嘴甜勤快点，跟谁都客客气气混个脸熟，谁也不得罪', scores: { zhidao: -2, wenqing: 2, cangfeng: 1, fenggu: -1 } },
+      { label: 'C', text: '不管那些弯弯绕绕，闷头把手里活干漂亮，靠本事站稳脚跟', scores: { zhidao: 2, renshi: 2, yuju: -2 } },
+      { label: 'D', text: '看眼缘交一两个聊得来的朋友就行，其他人保持礼貌距离', scores: { fenggu: 2, wenqing: 2, yuju: -2, cangfeng: -1 } }
+    ]
+  },
+  {
+    id: 12,
+    chapter: '第三部分 · 人际交往',
+    question: '以前很照顾你的老领导突然犯错被边缘化了，周围人都躲着他，你会？',
+    options: [
+      { label: 'A', text: '工作场合注意避嫌不惹麻烦，私底下悄悄帮他办点实事渡难关', scores: { wenqing: 2, cangfeng: 3, zhidao: -1 } },
+      { label: 'B', text: '该看望看望、该替他说话就说话，做人不能这么势利眼没良心', scores: { wenqing: 3, zhidao: 2, cangfeng: -2 } },
+      { label: 'C', text: '赶紧划清界限少来往，成年人得现实点，不能把自己的饭碗搭进去', scores: { wenqing: -3, zhidao: -2, yuju: 1 } },
+      { label: 'D', text: '心里挺不是滋味，约他出来喝顿小酒聊聊人生，劝他看开点歇一歇', scores: { fenggu: 3, wenqing: 2, renshi: -2 } }
+    ]
+  },
+  {
+    id: 13,
+    chapter: '第三部分 · 人际交往',
+    question: '突然听说有人在背后嚼你舌根、说你坏话，你一般会是什么反应？',
+    options: [
+      { label: 'A', text: '脸上跟没事人一样甚至对他更客气，心里默默记下，以后总有机会算账', scores: { cangfeng: 3, wenqing: -2, yuju: 2 } },
+      { label: 'B', text: '直接找上门当面问清楚，有话当面锣对面鼓地说，别在背后搞小动作', scores: { zhidao: 3, cangfeng: -3 } },
+      { label: 'C', text: '先想想是不是自己最近太高调惹人眼红了，主动收敛低调一点', scores: { cangfeng: 2, wenqing: 1, yuju: -1, zhidao: -1 } },
+      { label: 'D', text: '翻个白眼懒得搭理，根本不是一路人，犯不着为他坏自己心情', scores: { fenggu: 3, renshi: -1, yuju: -1 } }
+    ]
+  },
+  {
+    id: 14,
+    chapter: '第三部分 · 人际交往',
+    question: '两个关系都不错的朋友吵翻了，两边都拉着你评理让你站队，你会？',
+    options: [
+      { label: 'A', text: '帮理不帮亲，这件事谁错了我就直说谁不对，得罪人也认了', scores: { zhidao: 3, cangfeng: -2, wenqing: -1 } },
+      { label: 'B', text: '两边当和事佬顺毛哄，给双方都找个台阶下，尽量劝和别伤感情', scores: { wenqing: 3, cangfeng: 1, zhidao: -1 } },
+      { label: 'C', text: '不纠结谁对谁错，直接帮他们把核心利益分歧理清楚，拿个解决方案', scores: { yuju: 3, renshi: 1, wenqing: -1 } },
+      { label: 'D', text: '借口自己最近太忙躲远点，清官难断家务事，让他们自己解决', scores: { renshi: -3, fenggu: 1, zhidao: -1 } }
+    ]
+  },
+  {
+    id: 15,
+    chapter: '第三部分 · 人际交往',
+    question: '平时一起共事，你打心底里最烦哪种人？',
+    options: [
+      { label: 'A', text: '嘴上天天喊口号讲大道理，真到干活担责的时候跑得比谁都快的人', scores: { renshi: 3, fenggu: -1, zhidao: 1 } },
+      { label: 'B', text: '没眼力见、说话不过脑子，随时可能把大家一块儿坑死的人', scores: { cangfeng: 3, zhidao: -2, yuju: 1 } },
+      { label: 'C', text: '满脑子只有利益算计、毫无人情味，把身边人都当垫脚石的人', scores: { wenqing: 3, yuju: -1, fenggu: 1 } },
+      { label: 'D', text: '一点骨气和主见都没有，谁权大就舔谁的墙头草', scores: { zhidao: 3, fenggu: 2, cangfeng: -1 } }
+    ]
+  },
+
+  // 第四部分 · 现实取舍
+  {
+    id: 16,
+    chapter: '第四部分 · 利益取舍',
+    question: '摆在你面前两个岗位：一个是钱多权大但天天神仙打架的核心岗，一个是钱少点但清闲安稳的边缘岗，你选哪个？',
+    options: [
+      { label: 'A', text: '选核心岗！富贵险中求，手里有实权才能干成大事', scores: { yuju: 3, renshi: 3, fenggu: -2 } },
+      { label: 'B', text: '选清闲边缘岗，少赚点无所谓，留出时间搞自己的爱好、开心生活最重要', scores: { fenggu: 3, renshi: -3, yuju: -3 } },
+      { label: 'C', text: '看哪个岗干的活真正有用、能帮到实处，只要事有意义累点也去', scores: { zhidao: 2, wenqing: 2, renshi: 2 } },
+      { label: 'D', text: '先打听清楚核心岗的直属靠山稳不稳，有七成把握再上，不然先不动', scores: { cangfeng: 3, zhidao: -2, yuju: 1 } }
+    ]
+  },
+  {
+    id: 17,
+    chapter: '第四部分 · 利益取舍',
+    question: '你负责的活动预算突然被砍了三分之一，但老板要求效果不能降，你会先砍哪块？',
+    options: [
+      { label: 'A', text: '先保住底下干活兄弟们的辛苦费，把花里胡哨的排场和包装全砍掉', scores: { wenqing: 3, zhidao: 2, fenggu: -1 } },
+      { label: 'B', text: '重点保住老板看得见的那几个面子亮点，其他看不见的地方凑合过关', scores: { zhidao: -2, yuju: 2, wenqing: -2, fenggu: -1 } },
+      { label: 'C', text: '自己到处刷脸找赞助、借资源东拼西凑，硬着头皮把场子圆下来', scores: { renshi: 3, yuju: 2, zhidao: -1 } },
+      { label: 'D', text: '拿着账单找老板硬谈：给多少钱办多少事，砍了预算就必须降指标', scores: { zhidao: 3, cangfeng: -2, renshi: -1 } }
+    ]
+  },
+  {
+    id: 18,
+    chapter: '第四部分 · 利益取舍',
+    question: '只要在饭局上顺着甲方捧几句违心的客套话，就能拿到团队急需的预算，你会？',
+    options: [
+      { label: 'A', text: '张嘴就夸，还能夸得特自然，好听话又不花钱，把事办成才是硬道理', scores: { zhidao: -3, cangfeng: 2, fenggu: -2 } },
+      { label: 'B', text: '心里挺别扭，但为了团队大家的饭碗还是会去捧场，散场后自己叹口气', scores: { renshi: 2, wenqing: 2, fenggu: 2, zhidao: -1 } },
+      { label: 'C', text: '说不出口，宁可加班把方案改十遍靠实力赢，也绝不去低三下四拍马屁', scores: { zhidao: 3, fenggu: 2, cangfeng: -2 } },
+      { label: 'D', text: '我自己不出面，派手下嘴甜会来事的人去陪酒，既拿了钱又保住我的清高', scores: { yuju: 3, cangfeng: 2, renshi: -2, wenqing: -1 } }
+    ]
+  },
+  {
+    id: 19,
+    chapter: '第四部分 · 利益取舍',
+    question: '假如你手里握着一个能镇住全场的独家资源或关键内幕，你会怎么用？',
+    options: [
+      { label: 'A', text: '藏在手里先不亮出来，让大家都有点忌惮我，留着关键时刻保命或翻盘', scores: { cangfeng: 3, yuju: 2, wenqing: -2 } },
+      { label: 'B', text: '挑最关键的时机果断甩出来，用它换取最大的话语权和晋升筹码', scores: { yuju: 3, renshi: 2, fenggu: -1 } },
+      { label: 'C', text: '只要眼下能帮大家救急解围，二话不说直接拿出来一起用', scores: { wenqing: 3, renshi: 2, cangfeng: -2 } },
+      { label: 'D', text: '觉得拿在手里是个烫手山芋，赶紧按规矩上报交差，不想卷进是非里', scores: { renshi: -2, yuju: -2, zhidao: 1, fenggu: 1 } }
+    ]
+  },
+  {
+    id: 20,
+    chapter: '第四部分 · 利益取舍',
+    question: '在“多赚钱得实惠”和“好名声要体面”之间，你心里真实想法更偏向哪边？',
+    options: [
+      { label: 'A', text: '个人名声和体面最重要，钱少赚点没事，绝不能留下让人戳脊梁骨的把柄', scores: { fenggu: 2, renshi: -2, wenqing: -1, zhidao: 1 } },
+      { label: 'B', text: '实惠到手才最实在，面子值几个钱？自己和家人过得滋润比啥都强', scores: { fenggu: -3, zhidao: -2, renshi: 2 } },
+      { label: 'C', text: '只要摸着良心干的是正事，就算被人误解挨骂也无所谓', scores: { zhidao: 3, renshi: 3, wenqing: 2 } },
+      { label: 'D', text: '钱和虚名我都不太在乎，别来管我、让我活得自由痛快就行', scores: { fenggu: 3, yuju: -3, renshi: -2 } }
+    ]
+  },
+
+  // 第五部分 · 压力危机
+  {
+    id: 21,
+    chapter: '第五部分 · 抗压反应',
+    question: '工作上突然出了大篓子，眼看黑锅就要甩到你头上，其实你只是跟着执行的，这时候你会？',
+    options: [
+      { label: 'A', text: '马上把所有聊天记录、邮件时间线整理出来当场对质，这锅我绝对不背', scores: { zhidao: 3, cangfeng: -1, renshi: 2 } },
+      { label: 'B', text: '赶紧请病假或者退到二线避风头，先从暴风眼摘出来保住自己再说', scores: { zhidao: -3, cangfeng: 3, renshi: -2, fenggu: -2 } },
+      { label: 'C', text: '先冲上去把窟窿补好止损，责任自己多担一点，保住手底下干活的新人', scores: { renshi: 3, wenqing: 3, yuju: 1 } },
+      { label: 'D', text: '冷静看看上面追责到底想敲打谁，顺水推舟把祸水引开化解危机', scores: { yuju: 3, cangfeng: 2, wenqing: -3 } }
+    ]
+  },
+  {
+    id: 22,
+    chapter: '第五部分 · 抗压反应',
+    question: '连着加班忙了一个月，整个人快被榨干崩溃的时候，你一般怎么缓过来？',
+    options: [
+      { label: 'A', text: '去听场音乐会、看个展或者找个山清水秀的地方待着，换换脑子充充电', scores: { fenggu: 3, renshi: -1, wenqing: 1 } },
+      { label: 'B', text: '再咬牙死扛几天把事彻底干完，事情没落地之前让我歇也歇不踏实', scores: { renshi: 3, zhidao: 2, fenggu: -1 } },
+      { label: 'C', text: '赶紧装弱喊累，把手里的活分出去一点，给自己留口气，不能真累垮了', scores: { cangfeng: 2, renshi: -2, zhidao: -1 } },
+      { label: 'D', text: '找对象、家人或者死党吃顿火锅大吐苦水，有人陪着骂两句立马满血复活', scores: { wenqing: 3, cangfeng: -2, yuju: -1 } }
+    ]
+  },
+  {
+    id: 23,
+    chapter: '第五部分 · 抗压反应',
+    question: '你辛辛苦苦忙活了大半年的项目，因为公司大方向调整说停就停、全白干了，你会？',
+    options: [
+      { label: 'A', text: '脸上淡定接受，转身赶紧清点手里攒下的人脉和经验，准备押注下一个风口', scores: { yuju: 3, cangfeng: 3, wenqing: -2 } },
+      { label: 'B', text: '彻底看开了，打工人折腾来折腾去都是替别人忙活，以后再也不这么拼命了', scores: { fenggu: 3, renshi: -3, yuju: -2 } },
+      { label: 'C', text: '第一时间先帮跟着自己干的组员找好退路和转岗去处，不能亏待大家', scores: { wenqing: 3, renshi: 2, yuju: 1 } },
+      { label: 'D', text: '只要我觉得这事本身是对的就不服输，换个地方或者换个机会早晚重头再来', scores: { zhidao: 3, renshi: 3, cangfeng: -1 } }
+    ]
+  },
+  {
+    id: 24,
+    chapter: '第五部分 · 抗压反应',
+    question: '遇到一个脾气特别臭的领导或客户，当着很多人的面冲你发飙拍桌子，你会？',
+    options: [
+      { label: 'A', text: '先低头认错顺着他把火消了，等他冷静下来再慢悠悠按我的节奏把事办了', scores: { cangfeng: 3, zhidao: -3, fenggu: -2 } },
+      { label: 'B', text: '站直了不卑不亢回话：工作问题可以改，但拍桌子骂人这一套我不受', scores: { zhidao: 3, fenggu: 2, cangfeng: -2 } },
+      { label: 'C', text: '听出他借题发挥背后真正在急什么，递句关键话帮他把焦虑解决了', scores: { yuju: 2, cangfeng: 2, wenqing: 1 } },
+      { label: 'D', text: '表面上礼貌敷衍过去，回工位就开始改简历：这破地方不待也罢', scores: { fenggu: 2, renshi: -2, yuju: -1 } }
+    ]
+  },
+  {
+    id: 25,
+    chapter: '第五部分 · 抗压反应',
+    question: '在工作没啥起色、大环境也不好的低谷期，你最擅长怎么熬过去？',
+    options: [
+      { label: 'A', text: '沉住气猫着不动，悄悄攒钱攒资源，机会没出来之前绝不瞎折腾', scores: { cangfeng: 3, yuju: 3, wenqing: -1 } },
+      { label: 'B', text: '过好眼前的每一天，把手里小事做好、把家人照顾好，别的顺其自然', scores: { wenqing: 3, renshi: 2, yuju: -2 } },
+      { label: 'C', text: '正好趁清闲学点自己喜欢的手艺、多读点书，把自己的小世界经营丰富', scores: { fenggu: 3, yuju: -2, renshi: -1 } },
+      { label: 'D', text: '坐不住，主动去跑一线找新路子，干等着不如自己撞开一条缝', scores: { renshi: 3, zhidao: 2, cangfeng: -2 } }
+    ]
+  },
+
+  // 第六部分 · 底线价值观
+  {
+    id: 26,
+    chapter: '第六部分 · 底线原则',
+    question: '行业里有个“同行都在偷偷干、不干就少赚钱，但确实坑普通消费者”的潜规则，你会？',
+    options: [
+      { label: 'A', text: '坚决不碰，甚至想把这黑幕曝光出来，就算被同行排挤也不怕', scores: { zhidao: 3, wenqing: 2, cangfeng: -3 } },
+      { label: 'B', text: '我自己肯定不干这种缺德事，但也不去管别人怎么搞，管好自己就行', scores: { zhidao: 1, fenggu: 3, yuju: -2, renshi: -1 } },
+      { label: 'C', text: '在公司允许的范围内尽量给顾客多留点实惠，能少坑一点是一点', scores: { wenqing: 3, cangfeng: 2, renshi: 1, zhidao: -1 } },
+      { label: 'D', text: '大家都这么玩，我清高就得饿死，先跟着活下来坐到高位再去改规矩', scores: { yuju: 3, zhidao: -3, wenqing: -2, fenggu: -1 } }
+    ]
+  },
+  {
+    id: 27,
+    chapter: '第六部分 · 底线原则',
+    question: '老熟人提着贵重礼物上门，求你在审批或规定上“睁一只眼闭一只眼”放个水，你会？',
+    options: [
+      { label: 'A', text: '东西当场退回去、一口回绝，把红线讲死，省得以后大家都进去', scores: { zhidao: 3, cangfeng: -2, wenqing: -1 } },
+      { label: 'B', text: '好茶好烟招待着，但拿“上面查得严、系统锁死了”当借口，笑呵呵把事推掉', scores: { cangfeng: 2, zhidao: -1, renshi: -2, wenqing: 1 } },
+      { label: 'C', text: '礼绝对不收，但如果他确实遇到难处了，在合规范围内帮他另想别的办法', scores: { wenqing: 3, zhidao: 2, renshi: 2 } },
+      { label: 'D', text: '掂量一下风险大不大、这人以后用不用得上，没啥后患就顺水推舟卖个人情', scores: { zhidao: -3, cangfeng: 2, fenggu: -2, yuju: 1 } }
+    ]
+  },
+  {
+    id: 28,
+    chapter: '第六部分 · 底线原则',
+    question: '你觉得一个人真正活明白了、成熟了，最明显的表现是什么？',
+    options: [
+      { label: 'A', text: '顺风顺水时懂得留后路，得理也能饶人，把身段放软、把人情看透', scores: { cangfeng: 3, wenqing: 2, zhidao: -1 } },
+      { label: 'B', text: '见识过社会的复杂和黑暗之后，心里那点正义感和热乎气还没丢', scores: { zhidao: 3, wenqing: 2, cangfeng: -1 } },
+      { label: 'C', text: '情绪稳如老狗，不管多乱的局都能看清利益牌面，拿得起放得下', scores: { yuju: 3, cangfeng: 2, wenqing: -3 } },
+      { label: 'D', text: '不再跟别人比房比车比职位，关起门来能把自己的精神世界过舒服', scores: { fenggu: 3, yuju: -2, renshi: -2 } }
+    ]
+  },
+  {
+    id: 29,
+    chapter: '第六部分 · 底线原则',
+    question: '等以后老了退休回头看这辈子，你最希望别人提起你时怎么评价？',
+    options: [
+      { label: 'A', text: '“这人是个狠角色，当年带着大家打下好大一片江山、改写了行业规矩”', scores: { yuju: 3, renshi: 3, fenggu: -1 } },
+      { label: 'B', text: '“这人太不容易了，扛了最重的担子、帮了那么多人，一辈子对得起良心”', scores: { renshi: 3, wenqing: 3, zhidao: 1 } },
+      { label: 'C', text: '“这人深不可测，一辈子没吃过亏，什么大风大浪都在他手心里攥着”', scores: { cangfeng: 3, yuju: 3, wenqing: -3, renshi: -1 } },
+      { label: 'D', text: '“这人活得真潇洒干净，有才华有骨气，一辈子没向谁低过头”', scores: { fenggu: 3, zhidao: 2, yuju: -3 } }
+    ]
+  },
+  {
+    id: 30,
+    chapter: '第六部分 · 底线原则',
+    question: '如果现在中了大奖实现财富自由，彻底不用再看任何人脸色，你最想干嘛？',
+    options: [
+      { label: 'A', text: '在幕后搞投资当甩手大老板，平时深居简出，大方向我自己拍板就行', scores: { yuju: 2, cangfeng: 3, fenggu: 2, wenqing: -3, renshi: -2 } },
+      { label: 'B', text: '找个风景好的小地方住下，弄个院子喝茶弹琴看书，只跟一两个知己来往', scores: { fenggu: 3, wenqing: 2, yuju: -3, renshi: -3 } },
+      { label: 'C', text: '就在老地方买套舒服房子，天天陪家人吃饭、跟老朋友撸串喝酒吹牛', scores: { wenqing: 3, fenggu: -1, yuju: -2, cangfeng: -2 } },
+      { label: 'D', text: '我肯定闲不住，还是想拉支队伍去干点真正有意义、能改变点什么的实事', scores: { zhidao: 3, renshi: 3, cangfeng: -2 } }
+    ]
+  }
+];
+
+/**
+ * 12位核心人物档案
+ */
+const CHARACTERS = [
+  {
+    id: 'jiajing',
+    name: '嘉靖帝',
+    courtesy: '朱厚熜 · 大明执棋人',
+    title: '渊默雷霆 · 万方执棋',
+    seal: '执棋',
+    accentColor: '#8E2424',
+    bias: 0.031,
+    target: { zhidao: 60, yuju: 96, cangfeng: 95, renshi: 16, wenqing: 12, fenggu: 82 },
+    quote: '“云在青天水在瓶。世人皆以为自己在下棋，殊不知皆在朕的棋盘之中。”',
+    tags: ['顶级洞察', '深不可测', '制衡大师', '精神独立'],
+    traits: '你拥有极强的全局俯瞰视角与边界感，天生反感被人看透或拿捏。面对复杂的人事纠葛，你习惯退居幕后静观其变，一眼就能看穿每个人话里的真实算盘。你既懂现实规则的冷酷，内心深处又保留着一片谁也进不去的独立领地。',
+    reason: '你在测试中展现出极高的「驭局」与「藏锋」倾向，同时遇到杂事倾向于保持抽离与克制。你不喜欢亲自下场干琐碎活，更擅长定规矩、看风向，把最终决定权牢牢攥在自己手里。',
+    advantage: '超一流的看人眼力与情绪隔离能力。场面再乱你也不会被带偏节奏，总能一眼掐住核心矛盾。',
+    easterEgg: {
+      survival: '紫禁城玉熙宫终极BOSS（全剧存活率 99%，唯一对手只有时间）',
+      ally: '吕芳（懂你每一句潜台词的贴心人）',
+      nemesis: '海瑞（唯独拿不要命的直球选手毫无办法）',
+      tip: '偶尔放下掌控欲，身边人的真心比制衡手腕更暖人。'
+    }
+  },
+  {
+    id: 'hairui',
+    name: '海瑞',
+    courtesy: '海刚峰 · 大明利剑',
+    title: '孤峰独立 · 赤子利剑',
+    seal: '守道',
+    accentColor: '#1B4965',
+    bias: 0.0291,
+    target: { zhidao: 98, yuju: 42, cangfeng: 8, renshi: 92, wenqing: 72, fenggu: 68 },
+    quote: '“无父无君，弃国弃家，留此铮铮傲骨，只为天下苍生求一个公道！”',
+    tags: ['原则至上', '有话直说', '硬核实干', '不畏强权'],
+    traits: '你是现实里极其少见的硬核直球选手。眼里揉不得沙子，对虚伪客套、甩锅扯皮和行业潜规则有着天然的反感。一旦认准了理字，就算对面来头再大、代价再高，你也会毫不犹豫地站出来硬刚到底。',
+    reason: '你的「执道」与「任事」双双拉满，而「藏锋」很低。你懒得搞弯弯绕绕的心机话术，信奉身正不怕影子斜，遇到问题习惯正面硬上，用事实和证据说话，心里始终装着普通人的公道。',
+    advantage: '无坚不摧的破局执行力与公信力。在所有人都和稀泥的死局里，只有你敢一剑捅破窗户纸，连对手都不得不服你的硬气。',
+    easterEgg: {
+      survival: '诏狱硬核通关王者（凭一身正气硬生生熬走对手，活到大结局）',
+      ally: '王用汲（生死相托的患难好兄弟）',
+      nemesis: '赵贞吉、严嵩（最烦打太极的老油条）',
+      tip: '刚极易折，对身边真正关心你的家人朋友不妨柔和一点。'
+    }
+  },
+  {
+    id: 'huzongxian',
+    name: '胡宗宪',
+    courtesy: '胡汝贞 · 东南柱石',
+    title: '负重致远 · 泥泞孤臣',
+    seal: '担当',
+    accentColor: '#3D5A45',
+    bias: 0.1498,
+    target: { zhidao: 58, yuju: 78, cangfeng: 64, renshi: 96, wenqing: 90, fenggu: 42 },
+    quote: '“圣人的书是拿来看的，拿来办事百无一用。有些黑锅，总得有人背着往前走。”',
+    tags: ['忍辱负重', '靠谱扛事', '顾全大局', '外圆内方'],
+    traits: '你是团队和家里最让人踏实的“顶梁柱”。你早就明白现实世界不是非黑即白的童话，所以既懂人情世故的无奈，又死死守住良心底线。为了把事办成、为了护住手底下的人，你常常自己咽下委屈受夹板气，咬牙把烂摊子撑起来。',
+    reason: '你在「任事」「温情」与「驭局」上得分都很高，「执道」与「藏锋」保持着成熟的平衡。你既不像书呆子那样只会唱高调，也绝不会变成冷血精致利己主义者，永远选最难但最对得起大家的那条路。',
+    advantage: '极强的复杂烂摊子兜底能力。对上能沟通要资源，对下能体谅人心办实事，是真正能挑大梁的实干家。',
+    easterEgg: {
+      survival: '全身而退荣归故里（虽一路惊险万分，终凭实绩与分寸平安落地）',
+      ally: '戚继光、谭纶（一起扛事的靠谱队友）',
+      nemesis: '光说不练的键盘侠与贪得无厌的猪队友',
+      tip: '别把所有人的责任都往自己一个人肩上扛，你也需要歇一歇。'
+    }
+  },
+  {
+    id: 'zhangjuzheng',
+    name: '张居正',
+    courtesy: '张叔大 · 破局国手',
+    title: '蛰伏待时 · 铁腕革新',
+    seal: '破局',
+    accentColor: '#2B3A55',
+    bias: 0.007,
+    target: { zhidao: 66, yuju: 94, cangfeng: 80, renshi: 92, wenqing: 26, fenggu: 26 },
+    quote: '“时机未到时，潜龙勿用；大势来临时，雷霆万钧！”',
+    tags: ['长期主义', '沉得住气', '杀伐果断', '结果导向'],
+    traits: '你是典型的战略型狠人。既有改写规则的野心，又有极强的忍耐力。实力不够、时机不对的时候，你能猫在角落里一声不吭攒本事；一旦等来风口拿到话语权，你出手比谁都快准狠，不达目的誓不罢休。',
+    reason: '你的「驭局」「藏锋」与「任事」三项极高，而「温情」偏冷静克制。你深知没有实权支撑的理想只是空话，做决定时永远把长远大局和最终结果放在第一位。',
+    advantage: '超强的战略定力与铁腕推进力。低谷期耐得住寂寞，掌权时顶得住压力，能真正把大项目干成。',
+    easterEgg: {
+      survival: '笑到最后执掌全局（一路稳扎稳打晋级，开启属于你的时代）',
+      ally: '裕王、冯保（目标一致的核心合伙人）',
+      nemesis: '拖延低效、混日子不干活的庸人',
+      tip: '冲得再快再猛，也记得给身边并肩作战的人留点人情温度。'
+    }
+  },
+  {
+    id: 'yansong',
+    name: '严嵩',
+    courtesy: '严惟中 · 二十年首辅',
+    title: '老成深算 · 揣摩入微',
+    seal: '知机',
+    accentColor: '#5C4033',
+    bias: -0.0664,
+    target: { zhidao: 10, yuju: 82, cangfeng: 96, renshi: 22, wenqing: 34, fenggu: 34 },
+    quote: '“大明朝只有一个人能呼风唤雨。看懂了人心深处的忌讳，才能在风浪里稳坐钓鱼台。”',
+    tags: ['人精雷达', '极其沉稳', '顺势借力', '向上管理大师'],
+    traits: '你有着极其敏锐的人情世故雷达。不管在什么圈子里，你一眼就能看出谁说了算，以及对方嘴上没说出来的真实想法。你很少跟人硬碰硬红脸，擅长顺毛驴、借力打力，哪怕天塌下来脸上也能稳得住。',
+    reason: '你在「藏锋」与「驭局」上非常突出，而「执道」较低，处事极具弹性。在你看来，面子之争和意气用事最没必要，看准风向、稳住核心位置才是最聪明的活法。',
+    advantage: '顶级的风险嗅觉与向上管理能力。能在最微妙复杂的关系网里游刃有余，成为领导离不开的人。',
+    easterEgg: {
+      survival: '内阁超长待机二十年（但切记管好身边不靠谱的亲戚下属）',
+      ally: '胡宗宪（关键时刻能替你把实活干漂亮的人）',
+      nemesis: '徐阶、张居正（比你更能忍的后起之秀）',
+      tip: '算无遗策固然厉害，但守住做人底线才能真正睡得踏实。'
+    }
+  },
+  {
+    id: 'lvfang',
+    name: '吕芳',
+    courtesy: '吕老祖宗 · 司礼监掌印',
+    title: '春风化雨 · 思危知退',
+    seal: '知退',
+    accentColor: '#7A5C3E',
+    bias: 0.1282,
+    target: { zhidao: 36, yuju: 66, cangfeng: 84, renshi: 54, wenqing: 92, fenggu: 48 },
+    quote: '“做人做事记住六个字：思危、思退、思变。得饶人处且饶人，留条生路就是留自己的福分。”',
+    tags: ['高情商天花板', '说话熨帖', '知进知退', '广结善缘'],
+    traits: '你是周围人眼里最舒服、最通透的明白人。见过不少风浪但一点不刻薄，说话办事永远让人如沐春风，懂得给每个人留面子、搭台阶。更难得的是你不贪恋风头，顺境时懂得给自己留后路，从不把事做绝。',
+    reason: '你的「温情」与「藏锋」双高，各项性格十分圆融。你既看得懂职场的凶险，心里又存着善良，习惯用温和柔性的方式化解矛盾，护住自己的同时也愿意拉别人一把。',
+    advantage: '满级的情绪价值与人际润滑能力。再僵的场面有你在就能缓和下来，走到哪都能攒下好人缘与福气。',
+    easterEgg: {
+      survival: '远赴南京平安养老（全剧最圆满通透的善终结局）',
+      ally: '冯保、高翰文（受过你照顾的人都念你的好）',
+      nemesis: '陈洪（戾气重、翻脸不认人的狠毒小人）',
+      tip: '总替别人操心周全太累了，偶尔也任性一回先顾好自己。'
+    }
+  },
+  {
+    id: 'yangjinshui',
+    name: '杨金水',
+    courtesy: '杨公公 · 江南织造',
+    title: '八面玲珑 · 绝境逢生',
+    seal: '机变',
+    accentColor: '#4A5859',
+    bias: -0.1453,
+    target: { zhidao: 14, yuju: 34, cangfeng: 62, renshi: 88, wenqing: 24, fenggu: 10 },
+    quote: '“水太深的时候，看准风向果断按下暂停键，活下来才是一切的前提。”',
+    tags: ['反应神速', '办事利索', '极其机灵', '极限求生'],
+    traits: '你是典型的实战派聪明人，脑子转得飞快，干活麻利不拖泥带水。顺风局里你是能扛KPI的业务好手；一旦闻到不对劲的危险苗头，你比谁都果断，能立马踩急刹车缩回壳里，靠超强的应变力保住自己。',
+    reason: '你的「任事」与「藏锋」偏高，而「执道」与「风骨」非常务实接地气。你不吃画大饼谈情怀那一套，只看重实打实的利益与安全，能屈能伸、随机应变。',
+    advantage: '超强的临场反应速度与抗打击求生欲。再棘手的具体问题都能快速搞定，逆境里总能找到活路。',
+    easterEgg: {
+      survival: '装疯三年瞒天过海，最终平安脱身（影帝级极限避险操作）',
+      ally: '吕芳（关键时刻真能保你一命的老领导）',
+      nemesis: '沈一石、海瑞（一个拉你下水，一个盯你漏洞）',
+      tip: '把这份机灵劲儿放在稳健长远的正道上，就不用天天提心吊胆走钢丝了。'
+    }
+  },
+  {
+    id: 'zhaozhenji',
+    name: '赵贞吉',
+    courtesy: '赵孟静 · 理学名臣',
+    title: '明哲保身 · 体面算盘',
+    seal: '明哲',
+    accentColor: '#6B5B7B',
+    bias: -0.1668,
+    target: { zhidao: 34, yuju: 38, cangfeng: 46, renshi: 14, wenqing: 16, fenggu: 68 },
+    quote: '“凡事皆有法度边界，先把自己的阵脚站稳了，再去谈其他。”',
+    tags: ['边界感强', '爱惜羽毛', '算账精明', '绝不背锅'],
+    traits: '你活得非常清醒且讲究体面，拥有极强的防背锅意识和个人边界感。你口才好、懂规则，遇到麻烦事第一反应是算清权责利弊，绝不脑子一热替别人的烂摊子买单。比起盲目冲锋，你更在乎自己的节奏和履历干不干净。',
+    reason: '你在「任事」与「温情」上非常克制，同时保留了一定的「风骨」与「藏锋」。你既要好名声好体面，又深谙职场自保法则，永远把风险可控放在第一位。',
+    advantage: '精准的避坑合规意识与场面控场力。很少掉进情绪陷阱或无底洞项目，总能体体面面守住自己的利益。',
+    easterEgg: {
+      survival: '一路升迁入阁拜相（虽然常被同事吐槽太滑头，但职场段位稳如泰山）',
+      ally: '徐阶（同样讲究体面分寸的温和派）',
+      nemesis: '海瑞、胡宗宪（最怕遇到逼你掏家底扛事的实在人）',
+      tip: '算盘打得太精容易让人觉得冷漠，关键时刻多一点担当会更得人心。'
+    }
+  },
+  {
+    id: 'shenyishi',
+    name: '沈一石',
+    courtesy: '沈老板 · 江南首富',
+    title: '锦绣孤舟 · 清醒悲歌',
+    seal: '清醒',
+    accentColor: '#2E4F4F',
+    bias: 0.0827,
+    target: { zhidao: 44, yuju: 66, cangfeng: 78, renshi: 72, wenqing: 66, fenggu: 94 },
+    quote: '“侯非侯，王非王，千乘万骑归邙山……这一生织尽天下锦绣，终究只求死得体面干净。”',
+    tags: ['人间清醒', '才华横溢', '外冷内热', '审美在线'],
+    traits: '你既有搞定复杂业务的真本事，骨子里又是个极有品味的文艺青年。你比谁都更早看透名利场那套虚伪游戏，表面上不动声色地把应酬和活儿办得漂漂亮亮，心里却始终带着一丝疏离感，只对极少数真正懂你的人掏心窝子。',
+    reason: '你的「风骨」高居榜首，同时「藏锋」「任事」与「温情」都不低。你在现实里能挑重担，但精神上绝不肯同流合污，是典型的“身在局中扛事、心在局外看戏”的清醒者。',
+    advantage: '难得一见的审美品味与通透眼界。干出来的活既有实力又有高级感，关键时刻还能护住在乎的人。',
+    easterEgg: {
+      survival: '一曲广陵散绝响江南（虽然结局悲情，但留下了全剧最惊艳的体面背影）',
+      ally: '高翰文、芸娘（真正懂你才华与苦衷的知音）',
+      nemesis: '没完没了压榨你、把你当提款机的消耗型关系',
+      tip: '别把所有苦水都一个人往肚子里咽，及时止损远离消耗你的人。'
+    }
+  },
+  {
+    id: 'gaohanwen',
+    name: '高翰文',
+    courtesy: '高凤鸣 · 翰林才子',
+    title: '广陵绝响 · 清流书生',
+    seal: '清雅',
+    accentColor: '#3A6B7E',
+    bias: -0.0365,
+    target: { zhidao: 88, yuju: 16, cangfeng: 14, renshi: 26, wenqing: 64, fenggu: 96 },
+    quote: '“以改兼赈，两难自解——纵使世道浑浊，总该留一方琴心剑胆的清白天地。”',
+    tags: ['纯粹理想', '文艺浪漫', '真诚坦率', '讨厌应酬'],
+    traits: '你心里住着一个干干净净的少年或艺术家。你喜欢一切美好、有逻辑、有格调的事物，极度讨厌酒桌文化、勾心斗角和甩锅扯皮。你待人真诚不设防，哪怕在复杂的社会里吃过点亏，也不愿意把自己变成油腻圆滑的样子。',
+    reason: '你的「风骨」与「执道」极高，而「驭局」「藏锋」很低。你天生适合搞专业技术、创意内容或学术研究，实在懒得把宝贵的生命浪费在跟人斗心眼上。',
+    advantage: '纯净的创造力与审美灵气。没有世俗条条框框的束缚，往往能想出别人想不到的妙招，活得坦荡干净。',
+    easterEgg: {
+      survival: '脱下官服携知己潇洒归隐（因祸得福，反倒过上了全剧最神仙眷侣的日子）',
+      ally: '芸娘、吕芳（懂你的纯粹、愿意护着你的贵人与伴侣）',
+      nemesis: '严世蕃、郑泌昌（最容易被职场老油条挖坑下套）',
+      tip: '在复杂的圈子里签字答应事前，记得拉个心眼多的朋友帮你把把关。'
+    }
+  },
+  {
+    id: 'wangyongji',
+    name: '王用汲',
+    courtesy: '王润莲 · 人间良友',
+    title: '人间烟火 · 侠义良友',
+    seal: '重义',
+    accentColor: '#8C4A27',
+    bias: -0.065,
+    target: { zhidao: 72, yuju: 26, cangfeng: 20, renshi: 80, wenqing: 96, fenggu: 32 },
+    quote: '“圣人离我们太远，我只知道朋友有难要帮，百姓有冤要伸，做人要对得起良心！”',
+    tags: ['有情有义', '踏实靠谱', '热心肠', '接地气'],
+    traits: '你是现实生活里最值得深交的宝藏朋友！你没有高高在上的架子，也不搞虚头巴脑的套路，为人实在、热心、有良心。你既过得惯热气腾腾的普通小日子，又在朋友落难时第一个撸起袖子冲上去帮忙，谁跟你相处都觉得踏实暖心。',
+    reason: '你的「温情」维度最高，同时具备扎实的「任事」与「执道」，且「藏锋」「驭局」较低。你看重真感情胜过权谋算计，是个脚踏实地、有血有肉的实在人。',
+    advantage: '极高的人品口碑与落地执行力。走到哪都能交到真朋友，踏实肯干不踩雷，后半生福气往往特别稳。',
+    easterEgg: {
+      survival: '一路稳步升迁至南京刑部尚书（好人有好报代表，全程平平安安）',
+      ally: '海瑞（哪怕平时拌嘴吵架，关键时刻也能把后背交给对方的铁哥们）',
+      nemesis: '落井下石、忘恩负义的势利小人',
+      tip: '热心帮朋友的时候，也记得捂好自己的钱包和精力，别被人白白消耗。'
+    }
+  },
+  {
+    id: 'yunniang',
+    name: '芸娘',
+    courtesy: '沈府清音 · 乱世佳人',
+    title: '乱世清音 · 通透如水',
+    seal: '通透',
+    accentColor: '#7D4E57',
+    bias: 0.0522,
+    target: { zhidao: 52, yuju: 14, cangfeng: 64, renshi: 18, wenqing: 90, fenggu: 90 },
+    quote: '“繁华场里的戏看多了，才明白平平安安、真心相待比什么泼天富贵都金贵。”',
+    tags: ['温柔通透', '看人很准', '重情知恩', '不慕虚荣'],
+    traits: '你平时看着温和安静、不争不抢，其实心里跟明镜似的，谁是真心、谁是假意你一眼就看得出来。你对争权夺利和虚荣排场没啥兴趣，就算身处热闹喧嚣的地方也能守住自己的清净；唯独对真感情和恩义看得很重，外柔内刚。',
+    reason: '你的「风骨」与「温情」双高，「藏锋」内敛得体，而对「驭局」当老大或强行揽事没太大执念。你更看重内心的安稳与真挚的陪伴，活得清醒而温柔。',
+    advantage: '超强的共情治愈力与内心定力。不容易被外界的焦虑内卷带跑偏，能把平淡日子过出舒服自在的味道。',
+    easterEgg: {
+      survival: '远离是非圈与心上人远走江南（跳出名利漩涡，收获自由安稳的新生活）',
+      ally: '沈一石、高翰文（懂你的好、愿意护你周全的知心人）',
+      nemesis: '身不由己的利益捆绑与道德绑架',
+      tip: '你其实比自己想象中更有主见和力量，大胆按自己喜欢的方式活吧。'
+    }
+  }
+];
+
+/**
+ * 纯前端零依赖标准 QR Code 矩阵生成器 (ISO/IEC 18004, Byte Mode UTF-8, ECC Level M)
+ * 支持版本 1 ~ 10（最长可编码约 210 字节 URL），离线可用，无跨域限制
+ */
+(function (global) {
+  'use strict';
+
+  // Version 1..10 (ECC Level M): [totalCodewords, ecCodewordsPerBlock, numBlocksGroup1, dataCwGroup1, numBlocksGroup2, dataCwGroup2]
+  const VERSION_TABLE_M = [
+    null,
+    [26, 10, 1, 16, 0, 0],   // V1:  16 bytes max (14 chars)
+    [44, 16, 1, 28, 0, 0],   // V2:  28 bytes max (26 chars)
+    [70, 26, 1, 44, 0, 0],   // V3:  44 bytes max (42 chars)
+    [100, 18, 2, 32, 0, 0],  // V4:  64 bytes max (62 chars)
+    [134, 24, 2, 43, 0, 0],  // V5:  86 bytes max (84 chars)
+    [172, 16, 4, 27, 0, 0],  // V6: 108 bytes max (106 chars)
+    [196, 18, 4, 31, 0, 0],  // V7: 124 bytes max (122 chars)
+    [242, 22, 2, 38, 2, 39], // V8: 154 bytes max (152 chars)
+    [292, 22, 3, 36, 2, 37], // V9: 182 bytes max (179 chars)
+    [346, 26, 4, 43, 1, 44]  // V10:216 bytes max (213 chars)
+  ];
+
+  const ALIGNMENT_POS = [
+    null,
+    [],
+    [6, 18],
+    [6, 22],
+    [6, 26],
+    [6, 30],
+    [6, 34],
+    [6, 22, 38],
+    [6, 24, 42],
+    [6, 26, 46],
+    [6, 28, 50]
+  ];
+
+  // GF(256) 指数与对数表 (primitive polynomial 0x11D)
+  const GF_EXP = new Uint8Array(512);
+  const GF_LOG = new Uint8Array(256);
+  (function initGF() {
+    let x = 1;
+    for (let i = 0; i < 255; i++) {
+      GF_EXP[i] = x;
+      GF_LOG[x] = i;
+      x <<= 1;
+      if (x & 0x100) x ^= 0x11d;
+    }
+    for (let i = 255; i < 512; i++) {
+      GF_EXP[i] = GF_EXP[i - 255];
+    }
+  })();
+
+  function gfMul(a, b) {
+    if (a === 0 || b === 0) return 0;
+    return GF_EXP[GF_LOG[a] + GF_LOG[b]];
+  }
+
+  function rsGeneratorPoly(degree) {
+    let poly = [1];
+    for (let i = 0; i < degree; i++) {
+      const next = new Array(poly.length + 1).fill(0);
+      const root = GF_EXP[i];
+      for (let j = 0; j < poly.length; j++) {
+        next[j] ^= poly[j];
+        next[j + 1] ^= gfMul(poly[j], root);
+      }
+      poly = next;
+    }
+    return poly;
+  }
+
+  function rsComputeRemainder(data, ecLen) {
+    const gen = rsGeneratorPoly(ecLen);
+    const rem = new Array(ecLen).fill(0);
+    for (let i = 0; i < data.length; i++) {
+      const factor = data[i] ^ rem[0];
+      rem.shift();
+      rem.push(0);
+      if (factor !== 0) {
+        for (let j = 0; j < ecLen; j++) {
+          rem[j] ^= gfMul(gen[j + 1], factor);
+        }
+      }
+    }
+    return rem;
+  }
+
+  function utf8Bytes(str) {
+    if (typeof TextEncoder !== 'undefined') {
+      return Array.from(new TextEncoder().encode(str));
+    }
+    const out = [];
+    for (let i = 0; i < str.length; i++) {
+      let c = str.charCodeAt(i);
+      if (c < 0x80) out.push(c);
+      else if (c < 0x800) out.push(0xc0 | (c >> 6), 0x80 | (c & 0x3f));
+      else out.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 0x3f), 0x80 | (c & 0x3f));
+    }
+    return out;
+  }
+
+  function chooseVersion(byteLen) {
+    for (let v = 1; v <= 10; v++) {
+      const info = VERSION_TABLE_M[v];
+      const dataCapacityBytes = info[2] * info[3] + info[4] * info[5];
+      const lenBits = v <= 9 ? 8 : 16;
+      const neededBits = 4 + lenBits + byteLen * 8;
+      if (neededBits <= dataCapacityBytes * 8) return v;
+    }
+    throw new Error('QR URL too long');
+  }
+
+  function encodeDataCodewords(bytes, version) {
+    const info = VERSION_TABLE_M[version];
+    const totalDataCw = info[2] * info[3] + info[4] * info[5];
+    const bits = [];
+    const pushBits = (val, len) => {
+      for (let i = len - 1; i >= 0; i--) bits.push((val >>> i) & 1);
+    };
+
+    // Byte mode indicator: 0100
+    pushBits(0b0100, 4);
+    pushBits(bytes.length, version <= 9 ? 8 : 16);
+    for (const b of bytes) pushBits(b, 8);
+
+    const maxBits = totalDataCw * 8;
+    const term = Math.min(4, maxBits - bits.length);
+    pushBits(0, term);
+    while (bits.length % 8 !== 0) bits.push(0);
+
+    const codewords = [];
+    for (let i = 0; i < bits.length; i += 8) {
+      let byte = 0;
+      for (let j = 0; j < 8; j++) byte = (byte << 1) | bits[i + j];
+      codewords.push(byte);
+    }
+
+    const padBytes = [0xec, 0x11];
+    let padIdx = 0;
+    while (codewords.length < totalDataCw) {
+      codewords.push(padBytes[padIdx % 2]);
+      padIdx++;
+    }
+    return codewords;
+  }
+
+  function interleaveCodewords(dataCw, version) {
+    const [, ecLen, g1Blocks, g1Len, g2Blocks, g2Len] = VERSION_TABLE_M[version];
+    const dataBlocks = [];
+    const ecBlocks = [];
+    let offset = 0;
+
+    for (let i = 0; i < g1Blocks; i++) {
+      const blk = dataCw.slice(offset, offset + g1Len);
+      offset += g1Len;
+      dataBlocks.push(blk);
+      ecBlocks.push(rsComputeRemainder(blk, ecLen));
+    }
+    for (let i = 0; i < g2Blocks; i++) {
+      const blk = dataCw.slice(offset, offset + g2Len);
+      offset += g2Len;
+      dataBlocks.push(blk);
+      ecBlocks.push(rsComputeRemainder(blk, ecLen));
+    }
+
+    const result = [];
+    const maxDataLen = Math.max(g1Len, g2Len);
+    for (let col = 0; col < maxDataLen; col++) {
+      for (const blk of dataBlocks) {
+        if (col < blk.length) result.push(blk[col]);
+      }
+    }
+    for (let col = 0; col < ecLen; col++) {
+      for (const blk of ecBlocks) {
+        result.push(blk[col]);
+      }
+    }
+    return result;
+  }
+
+  function createEmptyGrid(size) {
+    return {
+      size,
+      modules: Array.from({ length: size }, () => new Uint8Array(size)),
+      isFunc: Array.from({ length: size }, () => new Uint8Array(size))
+    };
+  }
+
+  function setFuncModule(grid, r, c, dark) {
+    if (r < 0 || r >= grid.size || c < 0 || c >= grid.size) return;
+    grid.modules[r][c] = dark ? 1 : 0;
+    grid.isFunc[r][c] = 1;
+  }
+
+  function drawFunctionPatterns(grid, version) {
+    const size = grid.size;
+
+    // Timing patterns
+    for (let i = 0; i < size; i++) {
+      setFuncModule(grid, 6, i, i % 2 === 0);
+      setFuncModule(grid, i, 6, i % 2 === 0);
+    }
+
+    // Finder patterns + separators (top-left, top-right, bottom-left)
+    const drawFinder = (cy, cx) => {
+      for (let dy = -4; dy <= 4; dy++) {
+        for (let dx = -4; dx <= 4; dx++) {
+          const dist = Math.max(Math.abs(dx), Math.abs(dy));
+          setFuncModule(grid, cy + dy, cx + dx, dist !== 2 && dist !== 4);
+        }
+      }
+    };
+    drawFinder(3, 3);
+    drawFinder(3, size - 4);
+    drawFinder(size - 4, 3);
+
+    // Alignment patterns
+    const pos = ALIGNMENT_POS[version];
+    for (let i = 0; i < pos.length; i++) {
+      for (let j = 0; j < pos.length; j++) {
+        if (
+          (i === 0 && j === 0) ||
+          (i === 0 && j === pos.length - 1) ||
+          (i === pos.length - 1 && j === 0)
+        ) {
+          continue;
+        }
+        const cy = pos[i];
+        const cx = pos[j];
+        for (let dy = -2; dy <= 2; dy++) {
+          for (let dx = -2; dx <= 2; dx++) {
+            setFuncModule(grid, cy + dy, cx + dx, Math.max(Math.abs(dx), Math.abs(dy)) !== 1);
+          }
+        }
+      }
+    }
+
+    // Reserve format info bits & dark module
+    for (let i = 0; i <= 8; i++) {
+      if (i !== 6) {
+        setFuncModule(grid, 8, i, false);
+        setFuncModule(grid, i, 8, false);
+      }
+    }
+    for (let i = 0; i < 8; i++) {
+      setFuncModule(grid, 8, size - 1 - i, false);
+      setFuncModule(grid, size - 1 - i, 8, false);
+    }
+    setFuncModule(grid, size - 8, 8, true); // Always dark module
+
+    // Version >= 7 version info blocks (we support up to V10)
+    if (version >= 7) {
+      let rem = version;
+      for (let i = 0; i < 12; i++) rem = (rem << 1) ^ ((rem >>> 11) * 0x1f25);
+      const vBits = (version << 12) | rem;
+      for (let i = 0; i < 18; i++) {
+        const bit = ((vBits >>> i) & 1) === 1;
+        const a = size - 11 + (i % 3);
+        const b = Math.floor(i / 3);
+        setFuncModule(grid, a, b, bit);
+        setFuncModule(grid, b, a, bit);
+      }
+    }
+  }
+
+  function drawCodewords(grid, allCodewords) {
+    const size = grid.size;
+    let bitIdx = 0;
+    const totalBits = allCodewords.length * 8;
+
+    for (let right = size - 1; right >= 1; right -= 2) {
+      if (right === 6) right = 5;
+      for (let vert = 0; vert < size; vert++) {
+        for (let j = 0; j < 2; j++) {
+          const c = right - j;
+          const upward = ((right + 1) & 2) === 0;
+          const r = upward ? size - 1 - vert : vert;
+          if (!grid.isFunc[r][c]) {
+            let dark = false;
+            if (bitIdx < totalBits) {
+              dark = ((allCodewords[bitIdx >>> 3] >>> (7 - (bitIdx & 7))) & 1) === 1;
+              bitIdx++;
+            }
+            grid.modules[r][c] = dark ? 1 : 0;
+          }
+        }
+      }
+    }
+  }
+
+  function applyMaskAndFormat(baseGrid, mask) {
+    const size = baseGrid.size;
+    const modules = baseGrid.modules.map((row) => new Uint8Array(row));
+    const isFunc = baseGrid.isFunc;
+
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        if (isFunc[r][c]) continue;
+        let invert = false;
+        switch (mask) {
+          case 0: invert = (r + c) % 2 === 0; break;
+          case 1: invert = r % 2 === 0; break;
+          case 2: invert = c % 3 === 0; break;
+          case 3: invert = (r + c) % 3 === 0; break;
+          case 4: invert = (Math.floor(r / 2) + Math.floor(c / 3)) % 2 === 0; break;
+          case 5: invert = ((r * c) % 2) + ((r * c) % 3) === 0; break;
+          case 6: invert = (((r * c) % 2) + ((r * c) % 3)) % 2 === 0; break;
+          case 7: invert = (((r + c) % 2) + ((r * c) % 3)) % 2 === 0; break;
+        }
+        if (invert) modules[r][c] ^= 1;
+      }
+    }
+
+    // ECC Level M format indicator bits = 00
+    const data = (0b00 << 3) | mask;
+    let rem = data;
+    for (let i = 0; i < 10; i++) rem = (rem << 1) ^ ((rem >>> 9) * 0x537);
+    const bits = ((data << 10) | rem) ^ 0x5412;
+    const getBit = (idx) => ((bits >>> idx) & 1);
+
+    // First copy around top-left
+    for (let i = 0; i <= 5; i++) modules[8][i] = getBit(i);
+    modules[8][7] = getBit(6);
+    modules[8][8] = getBit(7);
+    modules[7][8] = getBit(8);
+    for (let i = 9; i < 15; i++) modules[14 - i][8] = getBit(i);
+
+    // Second copy along top-right & bottom-left
+    for (let i = 0; i < 8; i++) modules[8][size - 1 - i] = getBit(i);
+    for (let i = 8; i < 15; i++) modules[size - 15 + i][8] = getBit(i);
+    modules[size - 8][8] = 1;
+
+    return modules;
+  }
+
+  function computePenalty(modules) {
+    const size = modules.length;
+    let score = 0;
+
+    // Adjacent runs in rows & cols
+    for (let r = 0; r < size; r++) {
+      let runColor = modules[r][0], runLen = 1;
+      for (let c = 1; c < size; c++) {
+        if (modules[r][c] === runColor) {
+          runLen++;
+          if (runLen === 5) score += 3;
+          else if (runLen > 5) score += 1;
+        } else {
+          runColor = modules[r][c];
+          runLen = 1;
+        }
+      }
+    }
+    for (let c = 0; c < size; c++) {
+      let runColor = modules[0][c], runLen = 1;
+      for (let r = 1; r < size; r++) {
+        if (modules[r][c] === runColor) {
+          runLen++;
+          if (runLen === 5) score += 3;
+          else if (runLen > 5) score += 1;
+        } else {
+          runColor = modules[r][c];
+          runLen = 1;
+        }
+      }
+    }
+
+    // 2x2 blocks
+    for (let r = 0; r < size - 1; r++) {
+      for (let c = 0; c < size - 1; c++) {
+        const v = modules[r][c];
+        if (v === modules[r][c + 1] && v === modules[r + 1][c] && v === modules[r + 1][c + 1]) {
+          score += 3;
+        }
+      }
+    }
+    return score;
+  }
+
+  /**
+   * 生成二维码布尔矩阵 (matrix[r][c] === 1 表示深色模块)
+   */
+  function generateQRMatrix(text) {
+    let bytes = utf8Bytes(String(text || 'https://example.com'));
+    if (bytes.length > 210) {
+      bytes = bytes.slice(0, 210);
+    }
+    const version = chooseVersion(bytes.length);
+    const size = version * 4 + 17;
+    const dataCw = encodeDataCodewords(bytes, version);
+    const allCw = interleaveCodewords(dataCw, version);
+
+    const grid = createEmptyGrid(size);
+    drawFunctionPatterns(grid, version);
+    drawCodewords(grid, allCw);
+
+    let bestModules = null;
+    let bestPenalty = Infinity;
+    for (let mask = 0; mask < 8; mask++) {
+      const candidate = applyMaskAndFormat(grid, mask);
+      const pen = computePenalty(candidate);
+      if (pen < bestPenalty) {
+        bestPenalty = pen;
+        bestModules = candidate;
+      }
+    }
+    return bestModules;
+  }
+
+  /**
+   * 渲染为内联 SVG 字符串（带静区 Quiet Zone）
+   */
+  function renderQRToSVG(text, darkColor, bgColor) {
+    const matrix = generateQRMatrix(text);
+    const n = matrix.length;
+    const quiet = 3;
+    const total = n + quiet * 2;
+    const dark = darkColor || '#1A1815';
+    const bg = bgColor || '#FFFFFF';
+
+    let paths = '';
+    for (let r = 0; r < n; r++) {
+      for (let c = 0; c < n; c++) {
+        if (matrix[r][c]) {
+          paths += `M${c + quiet},${r + quiet}h1v1h-1z`;
+        }
+      }
+    }
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${total} ${total}" shape-rendering="crispEdges" aria-label="扫码参与测试二维码"><rect width="${total}" height="${total}" fill="${bg}"/><path d="${paths}" fill="${dark}"/></svg>`;
+  }
+
+  /**
+   * 直接将二维码绘制到 Canvas 指定区域
+   */
+  function drawQROnCanvas(ctx, text, x, y, boxSize, darkColor, bgColor) {
+    const matrix = generateQRMatrix(text);
+    const n = matrix.length;
+    const quiet = 3;
+    const total = n + quiet * 2;
+    const cell = boxSize / total;
+
+    ctx.fillStyle = bgColor || '#FFFFFF';
+    ctx.fillRect(x, y, boxSize, boxSize);
+
+    ctx.fillStyle = darkColor || '#1A1815';
+    for (let r = 0; r < n; r++) {
+      for (let c = 0; c < n; c++) {
+        if (matrix[r][c]) {
+          const rx = Math.round(x + (c + quiet) * cell);
+          const ry = Math.round(y + (r + quiet) * cell);
+          const rw = Math.round(x + (c + quiet + 1) * cell) - rx;
+          const rh = Math.round(y + (r + quiet + 1) * cell) - ry;
+          ctx.fillRect(rx, ry, rw, rh);
+        }
+      }
+    }
+  }
+
+  global.MiniQR = {
+    generateQRMatrix,
+    renderQRToSVG,
+    drawQROnCanvas
+  };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+/**
+ * 《测测你是〈大明王朝1566〉里的谁》核心交互与评分引擎
+ * 纯前端零依赖运行（支持 file:// 本地直开与移动端响应式浏览）
+ */
+
+(function () {
+  'use strict';
+
+  const STORAGE_KEY = 'ming1566_quiz_progress_v1';
+  const SHARE_URL_KEY = 'ming1566_share_url_v1';
+  const TOTAL_QUESTIONS = QUESTIONS.length;
+  const DIM_KEYS = DIMENSIONS.map((d) => d.key);
+
+  // 应用状态
+  const state = {
+    currentIndex: 0,
+    answers: new Array(TOTAL_QUESTIONS).fill(null), // 存放每题选中的 option index (0..3)
+    isTransitioning: false,
+    lastResult: null,
+    customShareUrl: ''
+  };
+
+  // =========================================================================
+  // 1. 六维白化向量匹配引擎（初始化时根据题库精确计算均值、标准差与白化矩阵）
+  // =========================================================================
+  const engine = initScoringEngine();
+
+  function initScoringEngine() {
+    const n = DIM_KEYS.length;
+    const mean = new Array(n).fill(0);
+    const cov = Array.from({ length: n }, () => new Array(n).fill(0));
+    const minRaw = new Array(n).fill(0);
+    const maxRaw = new Array(n).fill(0);
+
+    for (const q of QUESTIONS) {
+      const qMean = new Array(n).fill(0);
+      const k = q.options.length;
+
+      for (let i = 0; i < n; i++) {
+        const key = DIM_KEYS[i];
+        const vals = q.options.map((opt) => opt.scores[key] || 0);
+        minRaw[i] += Math.min(...vals);
+        maxRaw[i] += Math.max(...vals);
+        qMean[i] = vals.reduce((a, b) => a + b, 0) / k;
+        mean[i] += qMean[i];
+      }
+
+      for (const opt of q.options) {
+        const diff = DIM_KEYS.map((key, i) => (opt.scores[key] || 0) - qMean[i]);
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            cov[i][j] += (diff[i] * diff[j]) / k;
+          }
+        }
+      }
+    }
+
+    const std = cov.map((row, i) => Math.sqrt(Math.max(row[i], 1e-6)));
+
+    // Jacobi 对称矩阵特征分解，求白化矩阵 W = Cov^(-1/2)
+    const { vals, vecs } = jacobiSymmetricEigen(cov);
+    const W = Array.from({ length: n }, () => new Array(n).fill(0));
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        for (let m = 0; m < n; m++) {
+          const invSqrt = 1 / Math.sqrt(Math.max(vals[m], 1e-6));
+          W[i][j] += vecs[i][m] * invSqrt * vecs[j][m];
+        }
+      }
+    }
+
+    // 预计算每位角色在白化空间中的单位特征向量
+    const charProfiles = CHARACTERS.map((char) => {
+      const zTarget = DIM_KEYS.map((key) => (char.target[key] - 50) / 25);
+      const xCentered = zTarget.map((z, i) => z * std[i]);
+      const wVec = matVecMul(W, xCentered);
+      const wNorm = Math.hypot(...wVec) || 1;
+      return {
+        character: char,
+        wUnit: wVec.map((v) => v / wNorm),
+        bias: char.bias || 0
+      };
+    });
+
+    return { mean, std, minRaw, maxRaw, W, charProfiles };
+  }
+
+  function jacobiSymmetricEigen(matrix) {
+    const n = matrix.length;
+    const M = matrix.map((row) => row.slice());
+    const V = Array.from({ length: n }, (_, i) =>
+      Array.from({ length: n }, (_, j) => (i === j ? 1 : 0))
+    );
+
+    for (let iter = 0; iter < 100; iter++) {
+      let p = 0;
+      let q = 1;
+      let maxOff = 0;
+      for (let i = 0; i < n; i++) {
+        for (let j = i + 1; j < n; j++) {
+          if (Math.abs(M[i][j]) > maxOff) {
+            maxOff = Math.abs(M[i][j]);
+            p = i;
+            q = j;
+          }
+        }
+      }
+      if (maxOff < 1e-11) break;
+
+      const theta = 0.5 * Math.atan2(2 * M[p][q], M[q][q] - M[p][p]);
+      const c = Math.cos(theta);
+      const s = Math.sin(theta);
+
+      for (let i = 0; i < n; i++) {
+        const mip = M[i][p];
+        const miq = M[i][q];
+        M[i][p] = c * mip - s * miq;
+        M[i][q] = s * mip + c * miq;
+      }
+      for (let i = 0; i < n; i++) {
+        const mpi = M[p][i];
+        const mqi = M[q][i];
+        M[p][i] = c * mpi - s * mqi;
+        M[q][i] = s * mpi + c * mqi;
+      }
+      M[p][q] = 0;
+      M[q][p] = 0;
+
+      for (let i = 0; i < n; i++) {
+        const vip = V[i][p];
+        const viq = V[i][q];
+        V[i][p] = c * vip - s * viq;
+        V[i][q] = s * vip + c * viq;
+      }
+    }
+
+    return {
+      vals: M.map((row, i) => row[i]),
+      vecs: V
+    };
+  }
+
+  function matVecMul(M, v) {
+    return M.map((row) => row.reduce((sum, x, idx) => sum + x * v[idx], 0));
+  }
+
+  /**
+   * 根据30道题作答结果计算六维面板分（0~100）与人物契合度排行
+   */
+  function evaluateQuizResult(answers) {
+    const raw = new Array(DIM_KEYS.length).fill(0);
+
+    answers.forEach((optIdx, qIdx) => {
+      const validIdx = optIdx !== null && optIdx >= 0 ? optIdx : 0;
+      const opt = QUESTIONS[qIdx].options[validIdx];
+      DIM_KEYS.forEach((key, dIdx) => {
+        raw[dIdx] += opt.scores[key] || 0;
+      });
+    });
+
+    const centered = raw.map((val, i) => val - engine.mean[i]);
+    const zScores = centered.map((val, i) => val / engine.std[i]);
+
+    // 将 Z-score 映射为直观饱满的 12~98 百分制面板分（兼顾理论极值线性插值与平滑 Sigmoid）
+    const displayScores = {};
+    const dimDetails = DIMENSIONS.map((dim, i) => {
+      const linearRatio =
+        (raw[i] - engine.minRaw[i]) / Math.max(1, engine.maxRaw[i] - engine.minRaw[i]);
+      const sigmoidRatio = 1 / (1 + Math.exp(-0.85 * zScores[i]));
+      const blended = 0.45 * linearRatio + 0.55 * sigmoidRatio;
+      const score = Math.round(Math.min(98, Math.max(14, blended * 100)));
+      displayScores[dim.key] = score;
+      return {
+        ...dim,
+        score,
+        z: zScores[i]
+      };
+    });
+
+    // 白化空间相似度匹配
+    const wUser = matVecMul(engine.W, centered);
+    const wNorm = Math.hypot(...wUser);
+    const wUnit = wNorm > 1e-6 ? wUser.map((v) => v / wNorm) : [0, 0, 1, 0, 0, 0];
+
+    const ranked = engine.charProfiles
+      .map((profile) => {
+        let cosine = 0;
+        for (let i = 0; i < wUnit.length; i++) {
+          cosine += wUnit[i] * profile.wUnit[i];
+        }
+        const adjustedScore = cosine + profile.bias;
+        // 映射为符合直觉的灵魂契合度百分比 (83% ~ 99%)
+        const clampedCos = Math.max(-0.5, Math.min(1, adjustedScore));
+        const matchPct = Math.round(83 + ((clampedCos + 0.5) / 1.5) * 15);
+        return {
+          character: profile.character,
+          rawSim: adjustedScore,
+          cosine,
+          matchPct: Math.min(99, Math.max(82, matchPct))
+        };
+      })
+      .sort((a, b) => b.rawSim - a.rawSim);
+
+    const best = ranked[0];
+    const runnerUp = ranked[1];
+
+    // 提取用户最突出的两个维度，生成动态个性化匹配补充语
+    const sortedByStrength = [...dimDetails].sort((a, b) => b.score - a.score);
+    const topDim1 = sortedByStrength[0];
+    const topDim2 = sortedByStrength[1];
+    const dynamicNote = `你的心性图谱中，「${topDim1.fullName}」（${topDim1.score}分）与「${topDim2.fullName}」（${topDim2.score}分）尤为鲜明。`;
+
+    return {
+      best,
+      runnerUp,
+      displayScores,
+      dimDetails,
+      dynamicReason: `${dynamicNote}${best.character.reason}`
+    };
+  }
+
+  // =========================================================================
+  // 2. DOM 节点缓存与初始化
+  // =========================================================================
+  const els = {};
+
+  function cacheElements() {
+    els.viewHome = document.getElementById('view-home');
+    els.viewQuiz = document.getElementById('view-quiz');
+    els.viewComputing = document.getElementById('view-computing');
+    els.viewResult = document.getElementById('view-result');
+
+    els.rosterChips = document.getElementById('roster-chips');
+    els.btnStart = document.getElementById('btn-start');
+    els.resumeBanner = document.getElementById('resume-banner');
+    els.resumeCount = document.getElementById('resume-count');
+    els.btnResume = document.getElementById('btn-resume');
+
+    els.chapterBadge = document.getElementById('chapter-badge');
+    els.currentNum = document.getElementById('current-q-num');
+    els.totalNum = document.getElementById('total-q-num');
+    els.progressFill = document.getElementById('progress-fill');
+    els.questionStage = document.getElementById('question-stage');
+    els.questionTitle = document.getElementById('question-title');
+    els.optionsList = document.getElementById('options-list');
+    els.btnPrev = document.getElementById('btn-prev');
+    els.btnNext = document.getElementById('btn-next');
+
+    // 结果页节点
+    els.resMatchPct = document.getElementById('res-match-pct');
+    els.resName = document.getElementById('res-name');
+    els.resCourtesy = document.getElementById('res-courtesy');
+    els.resVerdict = document.getElementById('res-verdict');
+    els.resSeal = document.getElementById('res-seal');
+    els.resTags = document.getElementById('res-tags');
+    els.resQuote = document.getElementById('res-quote');
+    els.resRadarWrap = document.getElementById('res-radar-wrap');
+    els.resDimBars = document.getElementById('res-dim-bars');
+    els.resRunnerUp = document.getElementById('res-runner-up');
+    els.resTraits = document.getElementById('res-traits');
+    els.resReason = document.getElementById('res-reason');
+    els.resAdvantage = document.getElementById('res-advantage');
+    els.resSurvival = document.getElementById('res-survival');
+    els.resAlly = document.getElementById('res-ally');
+    els.resNemesis = document.getElementById('res-nemesis');
+    els.resTip = document.getElementById('res-tip');
+    els.resQrBox = document.getElementById('res-qr-box');
+
+    els.btnSavePoster = document.getElementById('btn-save-poster');
+    els.btnCopyText = document.getElementById('btn-copy-text');
+    els.btnCleanShot = document.getElementById('btn-clean-shot');
+    els.btnRestart = document.getElementById('btn-restart');
+    els.qrUrlInput = document.getElementById('qr-url-input');
+    els.btnUpdateQr = document.getElementById('btn-update-qr');
+    els.cleanShotToast = document.getElementById('clean-shot-toast');
+    els.toastMsg = document.getElementById('toast-msg');
+
+    els.posterModal = document.getElementById('poster-modal');
+    els.posterModalImg = document.getElementById('poster-modal-img');
+    els.posterModalClose = document.getElementById('poster-modal-close');
+  }
+
+  function initApp() {
+    cacheElements();
+    loadSavedShareUrl();
+    renderRosterPreview();
+    checkSavedProgress();
+    bindEvents();
+  }
+
+  function loadSavedShareUrl() {
+    try {
+      const saved = localStorage.getItem(SHARE_URL_KEY);
+      if (saved && saved.trim()) {
+        state.customShareUrl = saved.trim();
+      }
+    } catch (_) {
+      // ignore
+    }
+  }
+
+  function getActiveShareUrl() {
+    if (state.customShareUrl) return state.customShareUrl;
+    if (typeof window !== 'undefined' && window.location && window.location.href) {
+      const host = window.location.hostname || '';
+      const isLocal =
+        host === 'localhost' ||
+        host === '127.0.0.1' ||
+        host === '0.0.0.0' ||
+        window.location.protocol === 'file:';
+      if (!isLocal && (window.location.protocol === 'http:' || window.location.protocol === 'https:')) {
+        return window.location.href.split('#')[0];
+      }
+    }
+    if (typeof QUIZ_CONFIG !== 'undefined' && QUIZ_CONFIG.defaultShareUrl) {
+      return QUIZ_CONFIG.defaultShareUrl;
+    }
+    return 'https://vkvkvickii-art.github.io/ming1566-quiz/';
+  }
+
+  function refreshQRCodeUI() {
+    const url = getActiveShareUrl();
+    if (els.qrUrlInput) {
+      els.qrUrlInput.value = url;
+    }
+    if (els.resQrBox && typeof MiniQR !== 'undefined') {
+      els.resQrBox.innerHTML = MiniQR.renderQRToSVG(url, '#1A1815', '#FFFFFF');
+    }
+  }
+
+  function renderRosterPreview() {
+    els.rosterChips.innerHTML = CHARACTERS.map(
+      (c) => `<span class="roster-chip">${c.name}</span>`
+    ).join('');
+    els.totalNum.textContent = String(TOTAL_QUESTIONS);
+  }
+
+  // =========================================================================
+  // 3. 本地进度存储与恢复
+  // =========================================================================
+  function saveProgress() {
+    try {
+      const payload = {
+        currentIndex: state.currentIndex,
+        answers: state.answers
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    } catch (_) {
+      // 忽略无痕/本地文件策略限制
+    }
+  }
+
+  function clearProgress() {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (_) {
+      // ignore
+    }
+  }
+
+  function checkSavedProgress() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (
+        parsed &&
+        Array.isArray(parsed.answers) &&
+        parsed.answers.length === TOTAL_QUESTIONS
+      ) {
+        const answeredCount = parsed.answers.filter((a) => a !== null).length;
+        if (answeredCount > 0 && answeredCount < TOTAL_QUESTIONS) {
+          els.resumeCount.textContent = String(answeredCount);
+          els.resumeBanner.classList.add('visible');
+        }
+      }
+    } catch (_) {
+      // ignore
+    }
+  }
+
+  // =========================================================================
+  // 4. 视图与答题流程控制
+  // =========================================================================
+  function switchView(targetEl) {
+    [els.viewHome, els.viewQuiz, els.viewComputing, els.viewResult].forEach((el) => {
+      el.classList.toggle('active', el === targetEl);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function startNewQuiz() {
+    state.currentIndex = 0;
+    state.answers = new Array(TOTAL_QUESTIONS).fill(null);
+    state.isTransitioning = false;
+    clearProgress();
+    els.resumeBanner.classList.remove('visible');
+    renderCurrentQuestion('next');
+    switchView(els.viewQuiz);
+  }
+
+  function resumeSavedQuiz() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return startNewQuiz();
+      const parsed = JSON.parse(raw);
+      state.answers = parsed.answers;
+      const firstUnanswered = state.answers.findIndex((a) => a === null);
+      state.currentIndex =
+        firstUnanswered !== -1
+          ? firstUnanswered
+          : Math.min(parsed.currentIndex || 0, TOTAL_QUESTIONS - 1);
+      state.isTransitioning = false;
+      renderCurrentQuestion('next');
+      switchView(els.viewQuiz);
+    } catch (_) {
+      startNewQuiz();
+    }
+  }
+
+  function renderCurrentQuestion(direction) {
+    const q = QUESTIONS[state.currentIndex];
+    const selectedIdx = state.answers[state.currentIndex];
+
+    els.chapterBadge.textContent = q.chapter;
+    els.currentNum.textContent = String(state.currentIndex + 1).padStart(2, '0');
+    const pct = ((state.currentIndex + 1) / TOTAL_QUESTIONS) * 100;
+    els.progressFill.style.width = `${pct.toFixed(1)}%`;
+
+    // 切换方向过渡动画
+    els.questionStage.classList.remove('anim-next', 'anim-prev');
+    void els.questionStage.offsetWidth;
+    els.questionStage.classList.add(direction === 'prev' ? 'anim-prev' : 'anim-next');
+
+    els.questionTitle.textContent = `${q.id}. ${q.question}`;
+
+    els.optionsList.innerHTML = q.options
+      .map((opt, idx) => {
+        const isSelected = selectedIdx === idx ? 'selected' : '';
+        return `
+          <button type="button" class="option-btn ${isSelected}" data-idx="${idx}" aria-pressed="${selectedIdx === idx}">
+            <span class="option-key">${opt.label}</span>
+            <span class="option-text">${opt.text}</span>
+          </button>
+        `;
+      })
+      .join('');
+
+    els.btnPrev.disabled = state.currentIndex === 0;
+    els.btnNext.disabled = selectedIdx === null;
+    els.btnNext.textContent =
+      state.currentIndex === TOTAL_QUESTIONS - 1 ? '呈递考卷 →' : '下一题 →';
+  }
+
+  function handleSelectOption(optIndex) {
+    if (state.isTransitioning) return;
+    state.isTransitioning = true;
+    state.answers[state.currentIndex] = optIndex;
+    saveProgress();
+
+    // 立即高亮反馈
+    const buttons = els.optionsList.querySelectorAll('.option-btn');
+    buttons.forEach((btn, idx) => {
+      const active = idx === optIndex;
+      btn.classList.toggle('selected', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+    els.btnNext.disabled = false;
+
+    setTimeout(() => {
+      if (state.currentIndex < TOTAL_QUESTIONS - 1) {
+        state.currentIndex += 1;
+        saveProgress();
+        renderCurrentQuestion('next');
+        state.isTransitioning = false;
+      } else {
+        finishQuiz();
+      }
+    }, 240);
+  }
+
+  function goPrevQuestion() {
+    if (state.isTransitioning || state.currentIndex <= 0) return;
+    state.currentIndex -= 1;
+    saveProgress();
+    renderCurrentQuestion('prev');
+  }
+
+  function goNextQuestion() {
+    if (state.isTransitioning) return;
+    if (state.answers[state.currentIndex] === null) return;
+    if (state.currentIndex < TOTAL_QUESTIONS - 1) {
+      state.currentIndex += 1;
+      saveProgress();
+      renderCurrentQuestion('next');
+    } else {
+      finishQuiz();
+    }
+  }
+
+  function finishQuiz() {
+    clearProgress();
+    switchView(els.viewComputing);
+    const result = evaluateQuizResult(state.answers);
+    state.lastResult = result;
+
+    setTimeout(() => {
+      renderResultView(result);
+      switchView(els.viewResult);
+      state.isTransitioning = false;
+    }, 950);
+  }
+
+  // =========================================================================
+  // 5. 结果页面渲染与纯 SVG 六维雷达图
+  // =========================================================================
+  function renderResultView(result) {
+    const char = result.best.character;
+
+    els.resMatchPct.textContent = `灵魂契合度 ${result.best.matchPct}%`;
+    els.resName.textContent = char.name;
+    els.resCourtesy.textContent = char.courtesy;
+    els.resVerdict.textContent = char.title;
+    els.resVerdict.style.color = char.accentColor || '#1F445A';
+    els.resSeal.textContent = char.seal;
+
+    els.resTags.innerHTML = char.tags
+      .map((t) => `<span class="char-tag">${t}</span>`)
+      .join('');
+
+    els.resQuote.textContent = char.quote;
+
+    // 渲染 SVG 六维雷达图
+    els.resRadarWrap.innerHTML = buildRadarSVG(
+      result.dimDetails,
+      char.accentColor || '#9E2A2B'
+    );
+
+    // 渲染右侧维度条
+    els.resDimBars.innerHTML = result.dimDetails
+      .map(
+        (d) => `
+        <div class="dim-bar-item">
+          <span class="dim-bar-name">${d.name}</span>
+          <div class="dim-bar-track">
+            <div class="dim-bar-fill" style="width:${d.score}%; background:${char.accentColor || '#1F445A'}"></div>
+          </div>
+          <span class="dim-bar-val">${d.score}</span>
+        </div>
+      `
+      )
+      .join('');
+
+    els.resRunnerUp.innerHTML = `
+      <span>灵魂潜藏副色（次高契合）</span>
+      <strong>${result.runnerUp.character.name} · ${result.runnerUp.matchPct}%</strong>
+    `;
+
+    els.resTraits.textContent = char.traits;
+    els.resReason.textContent = result.dynamicReason;
+    els.resAdvantage.textContent = char.advantage;
+
+    els.resSurvival.textContent = char.easterEgg.survival;
+    els.resAlly.textContent = char.easterEgg.ally;
+    els.resNemesis.textContent = char.easterEgg.nemesis;
+    els.resTip.textContent = char.easterEgg.tip;
+
+    refreshQRCodeUI();
+  }
+
+  function buildRadarSVG(dimDetails, accentColor) {
+    const size = 220;
+    const cx = size / 2;
+    const cy = size / 2;
+    const radius = 74;
+    const levels = [0.33, 0.66, 1.0];
+
+    const pointAt = (idx, rRatio) => {
+      const angle = -Math.PI / 2 + (idx * 2 * Math.PI) / 6;
+      return [
+        cx + radius * rRatio * Math.cos(angle),
+        cy + radius * rRatio * Math.sin(angle)
+      ];
+    };
+
+    const gridPolys = levels
+      .map((lv) => {
+        const pts = dimDetails
+          .map((_, i) => pointAt(i, lv).map((n) => n.toFixed(1)).join(','))
+          .join(' ');
+        return `<polygon points="${pts}" fill="none" stroke="#D7CEBE" stroke-width="1" />`;
+      })
+      .join('');
+
+    const axesLines = dimDetails
+      .map((_, i) => {
+        const [x, y] = pointAt(i, 1);
+        return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#DFD7C8" stroke-width="1" />`;
+      })
+      .join('');
+
+    const dataPoints = dimDetails.map((d, i) => pointAt(i, d.score / 100));
+    const dataPolyStr = dataPoints
+      .map((p) => p.map((n) => n.toFixed(1)).join(','))
+      .join(' ');
+
+    const dots = dataPoints
+      .map(
+        ([x, y]) =>
+          `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.2" fill="${accentColor}" stroke="#FAF6EE" stroke-width="1.2" />`
+      )
+      .join('');
+
+    const labels = dimDetails
+      .map((d, i) => {
+        const [lx, ly] = pointAt(i, 1.25);
+        return `<text x="${lx.toFixed(1)}" y="${(ly + 4).toFixed(1)}" text-anchor="middle" font-size="12" font-family="Songti SC, STSong, Noto Serif SC, serif" font-weight="700" fill="#3E3932">${d.name}</text>`;
+      })
+      .join('');
+
+    return `
+      <svg viewBox="0 0 ${size} ${size}" role="img" aria-label="六维心性雷达图">
+        ${gridPolys}
+        ${axesLines}
+        <polygon points="${dataPolyStr}" fill="${accentColor}" fill-opacity="0.20" stroke="${accentColor}" stroke-width="2" />
+        ${dots}
+        ${labels}
+      </svg>
+    `;
+  }
+
+  // =========================================================================
+  // 6. 原生 Canvas 高清分享海报生成（带扫码二维码，动态自适应高度，中文避头点排版）
+  // =========================================================================
+  function generateSharePoster(result) {
+    const char = result.best.character;
+    const shareUrl = getActiveShareUrl();
+    const W = 900;
+    const serif = '"Songti SC", "STSong", "Noto Serif SC", "SimSun", Georgia, serif';
+    const sans = '-apple-system, "PingFang SC", "Microsoft YaHei", sans-serif';
+    const accent = char.accentColor || '#9E2A2B';
+
+    // 先创建测量用画布，精确计算各模块高度，彻底杜绝文字重叠或留白失衡
+    const canvas = document.createElement('canvas');
+    canvas.width = W;
+    canvas.height = 1600;
+    const ctx = canvas.getContext('2d');
+
+    const contentW = W - 144;
+    const quoteLines = wrapCanvasText(ctx, char.quote, W - 196, `bold 26px ${serif}`);
+    const qBoxY = 388;
+    const qBoxH = quoteLines.length * 40 + 36;
+    const radarBoxH = 260;
+
+    const easterText = `结局：${char.easterEgg.survival} ｜ 最佳同僚：${char.easterEgg.ally}`;
+    const traitsLines = wrapCanvasText(ctx, char.traits, contentW, `21px ${sans}`).slice(0, 5);
+    const advLines = wrapCanvasText(ctx, char.advantage, contentW, `21px ${sans}`).slice(0, 4);
+    const easterLines = wrapCanvasText(ctx, easterText, contentW, `21px ${sans}`).slice(0, 4);
+
+    const secH = (lines) => 42 + lines.length * 33;
+    const bodyEndY =
+      qBoxY +
+      qBoxH +
+      28 +
+      radarBoxH +
+      28 +
+      secH(traitsLines) +
+      18 +
+      secH(advLines) +
+      18 +
+      secH(easterLines);
+
+    const footerTopY = bodyEndY + 30;
+    const footerBoxH = 152;
+    const H = footerTopY + footerBoxH + 56;
+    canvas.height = H;
+
+    // 1. 宣纸底色与明刻本双层边框
+    ctx.fillStyle = '#F5EFE4';
+    ctx.fillRect(0, 0, W, H);
+
+    const grad = ctx.createRadialGradient(W * 0.85, H * 0.1, 20, W * 0.85, H * 0.1, 460);
+    grad.addColorStop(0, 'rgba(158, 42, 43, 0.07)');
+    grad.addColorStop(1, 'rgba(245, 239, 228, 0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.strokeStyle = '#1A1815';
+    ctx.lineWidth = 4;
+    ctx.strokeRect(28, 28, W - 56, H - 56);
+
+    ctx.strokeStyle = '#A68246';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(40, 40, W - 80, H - 80);
+
+    // 2. 顶部卷首眉标
+    ctx.fillStyle = '#6E665B';
+    ctx.font = `22px ${serif}`;
+    ctx.fillText('《测测你是〈大明王朝1566〉里的谁》', 72, 92);
+
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#9E2A2B';
+    ctx.fillText(`灵魂契合度 ${result.best.matchPct}%`, W - 72, 92);
+    ctx.textAlign = 'left';
+
+    ctx.strokeStyle = '#D7CEBE';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(72, 114);
+    ctx.lineTo(W - 72, 114);
+    ctx.stroke();
+
+    // 3. 角色大字名号与朱砂印
+    ctx.fillStyle = '#9E2A2B';
+    ctx.font = `bold 22px ${serif}`;
+    ctx.fillText('司礼监批红 · 灵魂人物判词', 72, 160);
+
+    ctx.fillStyle = '#1A1815';
+    ctx.font = `bold 74px ${serif}`;
+    ctx.fillText(char.name, 72, 244);
+
+    const nameWidth = ctx.measureText(char.name).width;
+    ctx.fillStyle = '#6E665B';
+    ctx.font = `26px ${serif}`;
+    ctx.fillText(char.courtesy, 72 + nameWidth + 24, 240);
+
+    ctx.fillStyle = accent;
+    ctx.font = `bold 30px ${serif}`;
+    ctx.fillText(char.title, 72, 294);
+
+    // 右上朱砂印章
+    const sealX = W - 168;
+    const sealY = 152;
+    ctx.save();
+    ctx.translate(sealX + 48, sealY + 48);
+    ctx.rotate(-0.04);
+    ctx.fillStyle = '#9E2A2B';
+    ctx.fillRect(-48, -48, 96, 96);
+    ctx.strokeStyle = 'rgba(250, 246, 238, 0.55)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(-41, -41, 82, 82);
+    ctx.fillStyle = '#FAF6EE';
+    ctx.font = `bold 34px ${serif}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(char.seal, 0, 2);
+    ctx.restore();
+
+    // 4. 判词标签
+    let tagX = 72;
+    const tagY = 322;
+    ctx.font = `22px ${serif}`;
+    char.tags.forEach((tag) => {
+      const tw = ctx.measureText(tag).width + 32;
+      ctx.fillStyle = '#FBF8F2';
+      ctx.fillRect(tagX, tagY, tw, 40);
+      ctx.strokeStyle = '#C8A971';
+      ctx.lineWidth = 1.2;
+      ctx.strokeRect(tagX, tagY, tw, 40);
+      ctx.fillStyle = '#1A1815';
+      ctx.fillText(tag, tagX + 16, tagY + 28);
+      tagX += tw + 14;
+    });
+
+    // 5. 专属记忆点金句框
+    ctx.fillStyle = '#EFE7D7';
+    ctx.fillRect(72, qBoxY, contentW, qBoxH);
+    ctx.fillStyle = '#9E2A2B';
+    ctx.fillRect(72, qBoxY, 6, qBoxH);
+
+    ctx.fillStyle = '#1A1815';
+    ctx.font = `bold 26px ${serif}`;
+    quoteLines.forEach((line, idx) => {
+      ctx.fillText(line, 98, qBoxY + 42 + idx * 40);
+    });
+
+    // 6. 六维雷达与维度数值区
+    let curY = qBoxY + qBoxH + 28;
+    ctx.fillStyle = '#FAF6EE';
+    ctx.fillRect(72, curY, contentW, radarBoxH);
+    ctx.strokeStyle = '#D7CEBE';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(72, curY, contentW, radarBoxH);
+
+    const rCx = 215;
+    const rCy = curY + radarBoxH / 2 + 4;
+    const rMax = 86;
+    [0.35, 0.7, 1.0].forEach((lv) => {
+      ctx.beginPath();
+      result.dimDetails.forEach((_, i) => {
+        const ang = -Math.PI / 2 + (i * 2 * Math.PI) / 6;
+        const px = rCx + rMax * lv * Math.cos(ang);
+        const py = rCy + rMax * lv * Math.sin(ang);
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      });
+      ctx.closePath();
+      ctx.strokeStyle = '#D7CEBE';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+
+    ctx.beginPath();
+    result.dimDetails.forEach((d, i) => {
+      const ang = -Math.PI / 2 + (i * 2 * Math.PI) / 6;
+      const px = rCx + rMax * (d.score / 100) * Math.cos(ang);
+      const py = rCy + rMax * (d.score / 100) * Math.sin(ang);
+      if (i === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    });
+    ctx.closePath();
+    ctx.fillStyle = hexToRgba(accent, 0.22);
+    ctx.fill();
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    ctx.fillStyle = '#3E3932';
+    ctx.font = `bold 20px ${serif}`;
+    ctx.textAlign = 'center';
+    result.dimDetails.forEach((d, i) => {
+      const ang = -Math.PI / 2 + (i * 2 * Math.PI) / 6;
+      const lx = rCx + (rMax + 24) * Math.cos(ang);
+      const ly = rCy + (rMax + 24) * Math.sin(ang) + 7;
+      ctx.fillText(d.name, lx, ly);
+    });
+    ctx.textAlign = 'left';
+
+    const barStartX = 375;
+    const barStartY = curY + 34;
+    result.dimDetails.forEach((d, idx) => {
+      const by = barStartY + idx * 34;
+      ctx.fillStyle = '#3E3932';
+      ctx.font = `bold 21px ${serif}`;
+      ctx.fillText(d.name, barStartX, by);
+
+      ctx.fillStyle = '#E6DFD2';
+      ctx.fillRect(barStartX + 62, by - 15, 300, 12);
+      ctx.fillStyle = accent;
+      ctx.fillRect(barStartX + 62, by - 15, Math.round(3 * d.score), 12);
+
+      ctx.fillStyle = '#6E665B';
+      ctx.font = `20px ${serif}`;
+      ctx.fillText(String(d.score), barStartX + 376, by);
+    });
+
+    ctx.fillStyle = '#6E665B';
+    ctx.font = `19px ${sans}`;
+    ctx.fillText(
+      `灵魂潜藏副色：${result.runnerUp.character.name}（契合度 ${result.runnerUp.matchPct}%）`,
+      barStartX,
+      curY + radarBoxH - 18
+    );
+
+    // 7. 性格画像与隐藏优势
+    curY += radarBoxH + 28;
+    curY = drawPreparedSection(ctx, '◆ 性格本色', traitsLines, 72, curY, serif, sans);
+    curY += 18;
+    curY = drawPreparedSection(ctx, '◆ 处世隐藏优势', advLines, 72, curY, serif, sans);
+    curY += 18;
+    curY = drawPreparedSection(ctx, '◆ 嘉靖朝生存彩蛋', easterLines, 72, curY, serif, sans);
+
+    // 8. 底部扫码入局底栏（左文案 + 右二维码）
+    ctx.fillStyle = '#EFE7D7';
+    ctx.fillRect(72, footerTopY, contentW, footerBoxH);
+    ctx.strokeStyle = '#C8A971';
+    ctx.lineWidth = 1.2;
+    ctx.strokeRect(72, footerTopY, contentW, footerBoxH);
+
+    // 左侧引导文案
+    ctx.fillStyle = '#1A1815';
+    ctx.font = `bold 25px ${serif}`;
+    ctx.fillText('扫码测测你是《大明王朝1566》里的谁', 96, footerTopY + 46);
+
+    ctx.fillStyle = '#524B42';
+    ctx.font = `20px ${sans}`;
+    ctx.fillText('30道大白话处世情境题 · 零门槛照见你的职场与性格底色', 96, footerTopY + 84);
+
+    // 朱砂小印签
+    ctx.fillStyle = 'rgba(158, 42, 43, 0.08)';
+    ctx.fillRect(96, footerTopY + 102, 268, 32);
+    ctx.strokeStyle = 'rgba(158, 42, 43, 0.4)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(96, footerTopY + 102, 268, 32);
+    ctx.fillStyle = '#9E2A2B';
+    ctx.font = `bold 18px ${serif}`;
+    ctx.fillText('长按识别右侧二维码 · 立即入局', 110, footerTopY + 124);
+
+    // 右侧高清二维码框
+    const qrSize = 124;
+    const qrX = W - 72 - qrSize - 16;
+    const qrY = footerTopY + Math.round((footerBoxH - qrSize) / 2);
+    if (typeof MiniQR !== 'undefined') {
+      MiniQR.drawQROnCanvas(ctx, shareUrl, qrX, qrY, qrSize, '#1A1815', '#FFFFFF');
+    }
+    ctx.strokeStyle = '#A68246';
+    ctx.lineWidth = 1.2;
+    ctx.strokeRect(qrX, qrY, qrSize, qrSize);
+
+    return canvas.toDataURL('image/png');
+  }
+
+  function drawPreparedSection(ctx, title, lines, x, y, serif, sans) {
+    ctx.fillStyle = '#1A1815';
+    ctx.font = `bold 24px ${serif}`;
+    ctx.fillText(title, x, y + 24);
+
+    ctx.fillStyle = '#3E3932';
+    ctx.font = `21px ${sans}`;
+    lines.forEach((line, idx) => {
+      ctx.fillText(line, x, y + 58 + idx * 33);
+    });
+    return y + 42 + lines.length * 33;
+  }
+
+  // 中文避头点标点集合：绝不出现在新行行首
+  const NO_LINE_START = new Set([
+    '，', '。', '、', '；', '：', '！', '？', '）', '》', '”', '’', '】', '〉', '%', ',', '.', ':', ';', '!', '?'
+  ]);
+
+  function wrapCanvasText(ctx, text, maxWidth, fontStr) {
+    ctx.font = fontStr;
+    const chars = Array.from(text);
+    const lines = [];
+    let current = '';
+
+    for (let i = 0; i < chars.length; i++) {
+      const ch = chars[i];
+      const test = current + ch;
+      if (ctx.measureText(test).width > maxWidth && current.length > 0) {
+        if (NO_LINE_START.has(ch)) {
+          // 将上一行末尾的一个字连同当前标点一起移到下一行，避免标点占行首
+          const currentArr = Array.from(current);
+          const carry = currentArr.pop() || '';
+          lines.push(currentArr.join(''));
+          current = carry + ch;
+        } else {
+          lines.push(current);
+          current = ch;
+        }
+      } else {
+        current = test;
+      }
+    }
+    if (current) lines.push(current);
+    return lines;
+  }
+
+  function hexToRgba(hex, alpha) {
+    const clean = hex.replace('#', '');
+    const r = parseInt(clean.substring(0, 2), 16) || 158;
+    const g = parseInt(clean.substring(2, 4), 16) || 42;
+    const b = parseInt(clean.substring(4, 6), 16) || 43;
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+
+  // =========================================================================
+  // 7. 分享、下载海报与交互事件绑定
+  // =========================================================================
+  function handleSavePoster() {
+    if (!state.lastResult) return;
+    const dataUrl = generateSharePoster(state.lastResult);
+    const charName = state.lastResult.best.character.name;
+
+    // 桌面端触发自动下载，同时打开高清预览弹窗方便手机长按保存
+    try {
+      const link = document.createElement('a');
+      link.download = `大明王朝1566人格测试_${charName}.png`;
+      link.href = dataUrl;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (_) {
+      // ignore
+    }
+
+    els.posterModalImg.src = dataUrl;
+    els.posterModal.classList.add('open');
+    showToast('已生成高清判词海报，可保存或长按分享');
+  }
+
+  function handleCopyShareText() {
+    if (!state.lastResult) return;
+    const char = state.lastResult.best.character;
+    const pct = state.lastResult.best.matchPct;
+    const runner = state.lastResult.runnerUp.character.name;
+
+    const shareText = [
+      `📜 我在《测测你是〈大明王朝1566〉里的谁》测出的灵魂人物是：【${char.name}】（契合度 ${pct}%）`,
+      `🏷️ 人物判词：${char.title}｜${char.tags.join(' · ')}`,
+      `💬 专属金句：${char.quote}`,
+      `🏮 嘉靖朝生存结局：${char.easterEgg.survival}`,
+      `🌗 灵魂潜藏副色：${runner}`,
+      `—— 三十道现代处世情境，不考明史，只照人心。`
+    ].join('\n');
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard
+        .writeText(shareText)
+        .then(() => showToast('专属判词文案已复制，快去小红书/朋友圈分享吧'))
+        .catch(() => fallbackCopy(shareText));
+    } else {
+      fallbackCopy(shareText);
+    }
+  }
+
+  function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showToast('专属判词文案已复制，快去分享吧');
+    } catch (_) {
+      showToast('复制失败，请直接截图保存结果卡片');
+    }
+    document.body.removeChild(ta);
+  }
+
+  let toastTimer = null;
+  function showToast(msg) {
+    els.toastMsg.textContent = msg;
+    els.toastMsg.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      els.toastMsg.classList.remove('show');
+    }, 2400);
+  }
+
+  function bindEvents() {
+    els.btnStart.addEventListener('click', startNewQuiz);
+    els.btnResume.addEventListener('click', resumeSavedQuiz);
+
+    els.optionsList.addEventListener('click', (e) => {
+      const btn = e.target.closest('.option-btn');
+      if (!btn) return;
+      const idx = Number(btn.getAttribute('data-idx'));
+      if (!Number.isNaN(idx)) {
+        handleSelectOption(idx);
+      }
+    });
+
+    els.btnPrev.addEventListener('click', goPrevQuestion);
+    els.btnNext.addEventListener('click', goNextQuestion);
+
+    els.btnSavePoster.addEventListener('click', handleSavePoster);
+    els.btnCopyText.addEventListener('click', handleCopyShareText);
+
+    if (els.btnUpdateQr && els.qrUrlInput) {
+      const applyCustomUrl = () => {
+        const val = els.qrUrlInput.value.trim();
+        state.customShareUrl = val;
+        try {
+          if (val) localStorage.setItem(SHARE_URL_KEY, val);
+          else localStorage.removeItem(SHARE_URL_KEY);
+        } catch (_) {
+          // ignore
+        }
+        refreshQRCodeUI();
+        showToast('海报二维码链接已更新，点击上方按钮即可重新导出海报');
+      };
+      els.btnUpdateQr.addEventListener('click', applyCustomUrl);
+      els.qrUrlInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          applyCustomUrl();
+        }
+      });
+    }
+
+    els.btnCleanShot.addEventListener('click', () => {
+      document.body.classList.add('clean-shot-mode');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (
+        document.body.classList.contains('clean-shot-mode') &&
+        !e.target.closest('#btn-clean-shot')
+      ) {
+        document.body.classList.remove('clean-shot-mode');
+      }
+    });
+
+    els.btnRestart.addEventListener('click', () => {
+      document.body.classList.remove('clean-shot-mode');
+      startNewQuiz();
+    });
+
+    els.posterModalClose.addEventListener('click', () => {
+      els.posterModal.classList.remove('open');
+    });
+
+    els.posterModal.addEventListener('click', (e) => {
+      if (e.target === els.posterModal) {
+        els.posterModal.classList.remove('open');
+      }
+    });
+
+    // 键盘快捷作答支持 (A/B/C/D, 1/2/3/4, 左右方向键)
+    document.addEventListener('keydown', (e) => {
+      if (els.posterModal.classList.contains('open')) {
+        if (e.key === 'Escape') els.posterModal.classList.remove('open');
+        return;
+      }
+      if (!els.viewQuiz.classList.contains('active')) return;
+
+      const keyUpper = e.key.toUpperCase();
+      const keyMap = { A: 0, B: 1, C: 2, D: 3, '1': 0, '2': 1, '3': 2, '4': 3 };
+      if (Object.prototype.hasOwnProperty.call(keyMap, keyUpper)) {
+        e.preventDefault();
+        handleSelectOption(keyMap[keyUpper]);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goPrevQuestion();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goNextQuestion();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+  } else {
+    initApp();
+  }
+})();
+
+</script>
+</body>
+</html>

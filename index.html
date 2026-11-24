@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>测测你是《大明王朝1566》里的谁 · 三十问照见本心</title>
+  <meta name="description" content="30道现代生活与职场处境选择题，零门槛测出你在《大明王朝1566》中的灵魂对应人物与六维心性图谱。" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%239E2A2B'/%3E%3Crect x='6' y='6' width='52' height='52' fill='none' stroke='%23FAF6EE' stroke-width='2' stroke-opacity='0.6'/%3E%3Ctext x='32' y='43' font-size='32' text-anchor='middle' fill='%23FAF6EE' font-family='serif' font-weight='bold'%3E明%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- 顶部卷首眉标 -->
+  <header class="top-ambient-bar" aria-label="卷首款识">
+    <span class="dynasty-mark">
+      <i class="dot-ornament"></i>
+      <span>大明嘉靖四十五年 · 丙寅岁</span>
+    </span>
+    <span>司礼监 · 性情考卷</span>
+  </header>
+
+  <main class="app-stage">
+    <!-- ==================== 1. 测试首页 ==================== -->
+    <section id="view-home" class="view-section active" aria-labelledby="main-quiz-title">
+      <div class="ming-folio">
+        <div class="ming-folio-inner">
+          <span class="corner-ornament tl"></span>
+          <span class="corner-ornament tr"></span>
+          <span class="corner-ornament bl"></span>
+          <span class="corner-ornament br"></span>
+
+          <div class="hero-header">
+            <span class="folio-kicker">趣味处世人格测试 · 零剧透门槛</span>
+            <div class="hero-title-wrap">
+              <span class="hero-pretitle">展卷入局 · 照见本心</span>
+              <h1 id="main-quiz-title" class="hero-title">
+                测测你是<span class="highlight-drama">《大明王朝1566》</span>里的谁
+              </h1>
+            </div>
+            <div class="hero-seal-row">
+              <span class="seal-stamp" aria-hidden="true">入局</span>
+            </div>
+          </div>
+
+          <p class="hero-quote">
+            庙堂之上，云在青天水在瓶；江湖之远，一叶扁舟听广陵。<br />
+            不考历史典故，不问剧情细节——从三十道现代职场与日常情境，看透你的处世锋芒、隐忍分寸与灵魂底色。
+          </p>
+
+          <div class="spec-pills">
+            <div class="spec-pill">
+              <span class="spec-pill-num">30 题</span>
+              <span class="spec-pill-label">生活化情境单选</span>
+            </div>
+            <div class="spec-pill">
+              <span class="spec-pill-num">六 维</span>
+              <span class="spec-pill-label">心性雷达图谱</span>
+            </div>
+            <div class="spec-pill">
+              <span class="spec-pill-num">12 位</span>
+              <span class="spec-pill-label">经典群像归属</span>
+            </div>
+          </div>
+
+          <div class="roster-preview">
+            <div class="roster-preview-title">— 卷中十二位灵魂人物 —</div>
+            <div id="roster-chips" class="roster-chips"></div>
+          </div>
+
+          <div class="cta-group">
+            <button id="btn-start" type="button" class="btn-primary">
+              展卷入局 · 开始测试
+            </button>
+            <div id="resume-banner" class="resume-banner">
+              <span>尚有未竟考卷（已答 <strong id="resume-count">0</strong>/30 题）</span>
+              <button id="btn-resume" type="button" class="resume-link">继续作答 →</button>
+            </div>
+          </div>
+
+          <p class="disclaimer-note">
+            注：本测试定位于趣味人格探索，非影视剧情考试，亦非专业心理诊断。凭第一直觉作答最为神准。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 2. 逐题作答页 ==================== -->
+    <section id="view-quiz" class="view-section" aria-live="polite">
+      <div class="ming-folio">
+        <div class="ming-folio-inner">
+          <span class="corner-ornament tl"></span>
+          <span class="corner-ornament tr"></span>
+          <span class="corner-ornament bl"></span>
+          <span class="corner-ornament br"></span>
+
+          <div class="quiz-progress-panel">
+            <div class="quiz-meta-row">
+              <span id="chapter-badge" class="chapter-badge">第一部分 · 日常状态</span>
+              <span class="progress-counter">
+                第 <strong id="current-q-num">01</strong> / <span id="total-q-num">30</span> 题
+              </span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuemin="1" aria-valuemax="30">
+              <div id="progress-fill" class="progress-fill"></div>
+            </div>
+          </div>
+
+          <div id="question-stage" class="question-stage">
+            <div>
+              <h2 id="question-title" class="question-title"></h2>
+              <div id="options-list" class="options-list"></div>
+            </div>
+
+            <div class="quiz-nav-bar">
+              <button id="btn-prev" type="button" class="nav-link-btn" disabled>
+                ← 返回上一题
+              </button>
+              <span class="quiz-keyboard-tip">支持按键 A-D 作答</span>
+              <button id="btn-next" type="button" class="nav-link-btn" disabled>
+                下一题 →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. 司礼监批红计算过渡页 ==================== -->
+    <section id="view-computing" class="view-section" aria-live="polite">
+      <div class="ming-folio">
+        <div class="ming-folio-inner computing-box">
+          <div class="seal-stamp computing-seal">批红</div>
+          <h2 class="computing-title">司礼监正在合算心性图谱…</h2>
+          <p class="computing-sub">权衡六维进退分寸，推演你的嘉靖朝命定入局人</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. 结果海报页 ==================== -->
+    <section id="view-result" class="view-section" aria-labelledby="res-name">
+      <!-- 海报主体卡片（适合直接手机截图分享小红书/朋友圈） -->
+      <article id="poster-card" class="poster-card">
+        <div class="poster-inner">
+          <span class="corner-ornament tl"></span>
+          <span class="corner-ornament tr"></span>
+          <span class="corner-ornament bl"></span>
+          <span class="corner-ornament br"></span>
+
+          <div class="poster-top-meta">
+            <span>《测测你是〈大明王朝1566〉里的谁》</span>
+            <span>司礼监朱批判词</span>
+          </div>
+
+          <div class="character-hero">
+            <div class="character-identity">
+              <div class="match-kicker">
+                <span>命定入局人物</span>
+                <span id="res-match-pct" class="match-badge-pct">灵魂契合度 95%</span>
+              </div>
+              <div class="character-name-row">
+                <h2 id="res-name" class="character-name">胡宗宪</h2>
+                <span id="res-courtesy" class="character-courtesy">胡汝贞 · 东南柱石</span>
+              </div>
+              <div id="res-verdict" class="character-verdict">负重致远 · 泥泞孤臣</div>
+            </div>
+
+            <div class="character-emblem-box">
+              <div id="res-seal" class="seal-stamp character-seal-large" aria-hidden="true">担当</div>
+            </div>
+          </div>
+
+          <div id="res-tags" class="character-tags"></div>
+
+          <blockquote class="quote-scroll-box">
+            <p id="res-quote" class="quote-scroll-text"></p>
+          </blockquote>
+
+          <!-- 六维心性雷达图与数值面板 -->
+          <div class="radar-panel">
+            <div id="res-radar-wrap" class="radar-svg-wrap"></div>
+            <div>
+              <div id="res-dim-bars" class="dim-bars-list"></div>
+              <div id="res-runner-up" class="runner-up-note"></div>
+            </div>
+          </div>
+
+          <!-- 深度判词解析 -->
+          <div class="analysis-sections">
+            <div class="analysis-block">
+              <h3 class="analysis-heading">
+                <span class="heading-mark"></span>
+                <span>性格本色</span>
+              </h3>
+              <p id="res-traits" class="analysis-body"></p>
+            </div>
+
+            <div class="analysis-block">
+              <h3 class="analysis-heading">
+                <span class="heading-mark"></span>
+                <span>匹配理由</span>
+              </h3>
+              <p id="res-reason" class="analysis-body"></p>
+            </div>
+
+            <div class="analysis-block">
+              <h3 class="analysis-heading">
+                <span class="heading-mark"></span>
+                <span>处世/职场隐藏优势</span>
+              </h3>
+              <p id="res-advantage" class="analysis-body"></p>
+            </div>
+          </div>
+
+          <!-- 趣味彩蛋 · 嘉靖朝生存指南 -->
+          <div class="easter-egg-panel">
+            <h3 class="analysis-heading">
+              <span class="heading-mark"></span>
+              <span>趣味彩蛋 · 嘉靖朝生存指南</span>
+            </h3>
+            <div class="easter-grid">
+              <div class="easter-item full-span">
+                <div class="easter-label">🏮 大明生存结局</div>
+                <div id="res-survival" class="easter-val"></div>
+              </div>
+              <div class="easter-item">
+                <div class="easter-label">🤝 最佳同僚搭子</div>
+                <div id="res-ally" class="easter-val"></div>
+              </div>
+              <div class="easter-item">
+                <div class="easter-label">⚡ 宿命职场天敌</div>
+                <div id="res-nemesis" class="easter-val"></div>
+              </div>
+              <div class="easter-item full-span">
+                <div class="easter-label">📜 司礼监赠言锦囊</div>
+                <div id="res-tip" class="easter-val"></div>
+              </div>
+            </div>
+          </div>
+
+          <footer class="poster-footer">
+            <div class="poster-footer-left">
+              <div class="poster-footer-cta">扫码入局 · 测测你是《大明王朝1566》里的谁</div>
+              <div class="poster-footer-sub">30道大白话处世情境题 · 不考历史，只看透你的职场与性格底色</div>
+              <span class="poster-footer-seal">大明王朝1566 · 灵魂人物图谱</span>
+            </div>
+            <div class="poster-qr-frame">
+              <div id="res-qr-box" class="poster-qr-box" aria-label="测试网页二维码"></div>
+              <span class="poster-qr-caption">长按或扫码测试</span>
+            </div>
+          </footer>
+        </div>
+      </article>
+
+      <!-- 海报外置操作栏 -->
+      <div class="result-actions-bar">
+        <button id="btn-save-poster" type="button" class="btn-primary">
+          保存带二维码高清海报（适合发小红书/朋友圈）
+        </button>
+        <button id="btn-copy-text" type="button" class="btn-secondary">
+          复制专属分享文案
+        </button>
+        <button id="btn-clean-shot" type="button" class="btn-secondary">
+          开启纯净截图模式
+        </button>
+        <button id="btn-restart" type="button" class="btn-secondary" style="grid-column: 1 / -1;">
+          重新展卷测试
+        </button>
+      </div>
+
+      <!-- 二维码跳转链接设置（部署上线后自动识别当前网址，也可手动指定） -->
+      <div id="qr-url-config" class="qr-url-config">
+        <div>🔗 <strong>海报二维码跳转网址</strong>（网页部署上线后会自动识别公网地址，也可手动填写你的分享链接）：</div>
+        <div class="qr-url-row">
+          <input id="qr-url-input" type="url" class="qr-url-input" placeholder="例如 https://你的网站域名.com" />
+          <button id="btn-update-qr" type="button" class="qr-url-btn">更新二维码</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 纯净截图提示浮条 -->
+  <div id="clean-shot-toast" class="clean-shot-toast">
+    已隐藏操作按钮，可直接截屏分享 · 点击任意处恢复
+  </div>
+
+  <!-- 全局轻提示 -->
+  <div id="toast-msg" class="toast-msg" role="status" aria-live="polite"></div>
+
+  <!-- 高清海报预览弹窗 -->
+  <div id="poster-modal" class="poster-modal" role="dialog" aria-modal="true" aria-labelledby="poster-modal-title">
+    <div class="poster-modal-box">
+      <div class="poster-modal-header">
+        <span id="poster-modal-title">专属判词海报已生成（含扫码二维码）</span>
+        <button id="poster-modal-close" type="button" class="poster-modal-close" aria-label="关闭预览">×</button>
+      </div>
+      <div class="poster-modal-body">
+        <img id="poster-modal-img" alt="大明王朝1566灵魂人物判词海报" />
+      </div>
+      <div class="poster-modal-tip">
+        电脑端已自动下载 PNG；手机端可长按上方图片保存至相册
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/qrcode.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
